@@ -1,0 +1,93 @@
+/*
+ Theme Name:   Twenty Fourteen Child
+ Theme URI:    http://example.com/twenty-fourteen-child/
+ Description:  Twenty Fourteen Child Theme
+ Author:       John Doe
+ Author URI:   http://example.com
+ Template:     twentyfourteen
+ Version:      1.0.0
+ Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  twenty-fourteen-child
+*/
+
+@import url("../twentyfourteen/style.css");
+
+/* =Theme customization starts here
+-------------------------------------------------------------- */
+
+strong.greenhr,
+li.greenhr{
+   background :green !important;
+   color:#FFF;
+}
+
+strong.yellowhr,
+li.yellowhr{
+   background :yellow !important;
+   color:#000;
+}
+
+strong.redhr,
+li.redhr{
+   background :red !important;
+   color:#FFF;
+}
+
+strong.greenhr *,
+li.greenhr a{
+   color:#FFF !important;
+   padding:10px 15px;
+}
+
+strong.yellowhr *,
+li.yellowhr a{
+   color:#000 !important;
+   padding:10px 15px;
+}
+
+strong.redhr *,
+li.redhr a{
+   color:#FFF !important;
+   padding:10px 15px;
+}
+
+.form-allowed-tags,
+.comment-form-attachment label{
+  display:none;
+}
+
+#t_story_status table,
+#b_story_status table{
+   border:0px;
+   border-top:1px solid #aaa;
+   border-bottom:1px solid #aaa;
+}
+
+#t_story_status table h5,
+#b_story_status table h5{
+   margin:10px;
+}
+
+#b_story_status {
+   text-align:center;
+   margin:0px auto;
+   width:40%;
+}
+
+#t_story_status table td,
+#b_story_status table td{
+   border:0px;
+   padding:0px;
+}
+
+#change_status{
+	text-align: center;
+	margin: 20px auto;
+	width: 100%;
+	float: left;
+}
+
+.ajax_status{
+    background:yellow;
+	color:#000;
+}
