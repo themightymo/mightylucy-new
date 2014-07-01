@@ -8,12 +8,17 @@
  Version:      1.0.0
  Tags:         light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
  Text Domain:  twenty-fourteen-child
+
+#Carl did some bitbucket testing before entering actual codes
+
 */
 
 @import url("../twentyfourteen/style.css");
 
 /* =Theme customization starts here
 -------------------------------------------------------------- */
+
+
 
 strong.greenhr,
 li.greenhr{
