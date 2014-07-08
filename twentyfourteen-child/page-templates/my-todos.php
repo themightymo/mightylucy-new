@@ -44,6 +44,9 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 						<div class="entry-content">
 						
 							<?php
+							
+							$myID = $current_user->ID;
+							echo $current_user->display_name;
 							$singleUserStory = array();
 							$userStories = array();
 							$blog_list = get_blog_list( 0, 'all' );
@@ -55,7 +58,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									$args = array( 
 										'posts_per_page' => -1,
 										'post_type' => 'user_story',
-										'author' =>  $current_user->ID,
+										//'author' =>  $myID,
 										'tax_query' => array(
 											array(
 												'taxonomy' => 'user_story_done_or_not',
@@ -92,6 +95,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										
 									endforeach; 
 									wp_reset_postdata(); 
+									restore_current_blog();
 								}?>
 								<?php
 							}
@@ -109,7 +113,9 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							// Display the User Story posts
 							echo '<ul id="sortable">';
 							foreach ($userStories AS $userStory) {
-								echo '<li  id="'.$userStory['blogid'].'x'.$userStory['id'].'x'.$userStory['menu_order'].'" class="ui-state-default" ><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><a href="' . $userStory['url'] . '">' . $userStory['sitename'] . ': ' . $userStory['title'] . '</a> [' . $userStory['dev'] . '] ' . $singleUserStory['commentCount'] . '</li>';
+								if ($current_user->display_name == $userStory['dev']) {
+									echo '<li  id="'.$userStory['blogid'].'x'.$userStory['id'].'x'.$userStory['menu_order'].'" class="ui-state-default" ><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><a href="' . $userStory['url'] . '">' . $userStory['sitename'] . ': ' . $userStory['title'] . '</a> [' . $userStory['dev'] . '] ' . $singleUserStory['commentCount'] . '</li>';
+								}
 							}
 							echo '</ul>'; ?>
 							
