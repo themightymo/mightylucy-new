@@ -329,7 +329,8 @@ if(function_exists("register_field_group"))
 					'8' => '1 day',
 					'16' => '2 days',
 					'32' => '3-4 days',
-					'48' => '1-2 weeks'
+					'40' => '1 week',
+					'80' => '1-2 weeks',
 				),
 				'default_value' => '',
 				'allow_null' => 0,
