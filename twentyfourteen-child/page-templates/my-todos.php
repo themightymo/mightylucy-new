@@ -45,8 +45,6 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 						
 							<?php
 							
-							$myID = $current_user->ID;
-							echo $current_user->display_name;
 							$singleUserStory = array();
 							$userStories = array();
 							$blog_list = get_blog_list( 0, 'all' );
@@ -58,7 +56,6 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									$args = array( 
 										'posts_per_page' => -1,
 										'post_type' => 'user_story',
-										//'author' =>  $myID,
 										'tax_query' => array(
 											array(
 												'taxonomy' => 'user_story_done_or_not',
