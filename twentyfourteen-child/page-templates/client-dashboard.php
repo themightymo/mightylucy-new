@@ -210,6 +210,34 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 						})( jQuery );
 						</script>
 							
+							<?php
+							$args = array( 
+								'posts_per_page' => -1, 
+								'post_type' => 'user_story',
+								'tax_query' => array(
+									array(
+										'taxonomy' => 'user_story_done_or_not',
+										'field' => 'slug',
+										'terms' => 'on-hold'
+									)
+								) 
+							);
+							$myposts = get_posts( $args );
+							$totalPosts = count($myposts);
+							if ($totalPosts > 0) { ?>
+								<h2>On Hold To-Do's</h2>
+								<ul>
+								<?php
+								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
+									<li>
+										<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>							
+									</li><?php 
+								endforeach; 
+								wp_reset_postdata();?>
+								</ul>
+							<?php 
+							} ?>
+
 							<h2>Completed To-Do's</h2>
 							<ul>
 							<?php
