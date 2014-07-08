@@ -77,7 +77,9 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										$singleUserStory['id'] =  get_the_ID();
 										$singleUserStory['blogid'] = $blogID;
 										$singleUserStory['menu_order'] = $post->menu_order;
-										
+										if (get_field('how_many_hours_will_this_to-do_require')) { 
+											$singleUserStory['how_many_hours'] = get_field('how_many_hours_will_this_to-do_require');
+										}
 										if (get_field('assigned_to')){
 											$assigned_to = get_field('assigned_to');
 											$singleUserStory['dev'] = $assigned_to['display_name'];
@@ -89,7 +91,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										$userStories[] = $singleUserStory;
 										
 									endforeach; 
-									wp_reset_postdata(); 
+									wp_reset_postdata();
+									restore_current_blog();
 								}?>
 								<?php
 							}
@@ -105,10 +108,14 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 							//var_dump($userStories);
 							// Display the User Story posts
+							$totalHoursEstimated = 0;
 							echo '<ul id="sortable">';
 							foreach ($userStories AS $userStory) {
 								echo '<li  id="'.$userStory['blogid'].'x'.$userStory['id'].'x'.$userStory['menu_order'].'" class="ui-state-default" ><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><a href="' . $userStory['url'] . '">' . $userStory['sitename'] . ': ' . $userStory['title'] . '</a> [' . $userStory['dev'] . '] ' . $singleUserStory['commentCount'] . '</li>';
+								$totalHoursEstimated += $userStory['how_many_hours'];
+								
 							}
+							echo 'Total Estimated Hours of ALL To-Dos: ' . $totalHoursEstimated;
 							echo '</ul>'; ?>
 							
 							<script>
