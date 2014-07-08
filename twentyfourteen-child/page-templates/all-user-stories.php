@@ -111,9 +111,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$totalHoursEstimated = 0;
 							echo '<ul id="sortable">';
 							foreach ($userStories AS $userStory) {
-								echo '<li  id="'.$userStory['blogid'].'x'.$userStory['id'].'x'.$userStory['menu_order'].'" class="ui-state-default" ><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><a href="' . $userStory['url'] . '">' . $userStory['sitename'] . ': ' . $userStory['title'] . '</a> [' . $userStory['dev'] . '] ' . $singleUserStory['commentCount'] . '</li>';
+								echo '<li  id="'.$userStory['blogid'].'x'.$userStory['id'].'x'.$userStory['menu_order'].'" class="ui-state-default" ><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><a href="' . $userStory['url'] . '">' . $userStory['sitename'] . ': ' . $userStory['title'] . ' (' . $userStory['how_many_hours'] . ' hours)</a> [' . $userStory['dev'] . '] ' . $singleUserStory['commentCount'] . '</li>';
 								$totalHoursEstimated += $userStory['how_many_hours'];
-								
 							}
 							echo 'Total Estimated Hours of ALL To-Dos: ' . $totalHoursEstimated;
 							echo '</ul>'; ?>
