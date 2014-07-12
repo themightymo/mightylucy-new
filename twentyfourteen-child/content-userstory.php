@@ -64,9 +64,11 @@
 		}
 		$doneornot=get_term($arr_user_story_done_or_not[0],'user_story_done_or_not');
 		if($doneornot->slug=='done'){ //if done
-		   $radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="tdone"   name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'" checked> Done</td></tr>'; 		
-		}else{
-			$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"  checked> Active</td><td><input id="tdone" name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td></tr>'; 
+		   $radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="tdone"   name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'" checked> Done</td><td><input id="ton-hold" name="tstatus_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'">On Hold</td></tr>'; 		
+		}elseif($doneornot->slug=='active'){ //if active
+			$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"  checked> Active</td><td><input id="tdone" name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="ton-hold" name="tstatus_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'">On Hold</td></tr>'; 
+		}else{ //if onhold
+			$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="tdone" name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="ton-hold" name="tstatus_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'" checked>On Hold</td></tr>'; 
 		}
 		?>
 		<div id="t_story_status"><table><?php echo $radiobuttons;?></table><div class="ajax_status"></div></div>

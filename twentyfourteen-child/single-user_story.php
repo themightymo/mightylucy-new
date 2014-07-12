@@ -37,9 +37,11 @@ get_header(); ?>
 					$arr_user_story_done_or_not=get_field('user_story_done_or_not');
 					$doneornot=get_term($arr_user_story_done_or_not[0],'user_story_done_or_not');
 					if($doneornot->slug=='done'){ //if done
-					   $radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="bdone"   name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'" checked> Done</td></tr>'; 		
-					}else{
-						$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"  checked> Active</td><td><input id="bdone" name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td></tr>'; 
+					   $radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="bdone"   name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'" checked> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'">On Hold</td></tr>'; 		
+					}elseif($doneornot->slug=='active'){ //if active
+						$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"  checked> Active</td><td><input id="bdone" name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'">On Hold</td></tr>'; 
+					}else{ //if onhold
+						$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="bdone" name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'" checked>On Hold</td></tr>'; 
 					}
 					?>
 					
