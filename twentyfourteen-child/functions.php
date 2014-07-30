@@ -375,6 +375,7 @@ if(function_exists("register_field_group"))
 				'name' => 'user_story_done_or_not',
 				'type' => 'taxonomy',
 				'taxonomy' => 'user_story_done_or_not',
+				'default_value' => '4',
 				'field_type' => 'radio',
 				'allow_null' => 0,
 				'load_save_terms' => 1,
