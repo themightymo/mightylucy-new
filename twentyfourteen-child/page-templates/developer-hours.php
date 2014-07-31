@@ -44,13 +44,13 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 							<table id="myTable" class="tablesorter">
 								<thead>
-								<tr>
-								   <th>Sitename</th>
-								   <th>Hours Invested</th>
-								   <th>Date Worked</th>
-								   <th>Developer</th>
-								   <th>Post ID</th>
-								</tr>
+									<tr>
+									   <th>Sitename</th>
+									   <th>Hours Invested</th>
+									   <th>Date Worked</th>
+									   <th>Developer</th>
+									   <th>Post ID</th>
+									</tr>
 								</thead>
 								<tbody>
 								<?php	
@@ -111,6 +111,15 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								//var_dump($userStories);
 								//echo '</pre>';
 								?>
+								<tfoot>
+									<tr>
+									   <th>Sitename</th>
+									   <th>Hours Invested</th>
+									   <th>Date Worked</th>
+									   <th>Developer</th>
+									   <th>Post ID</th>
+									</tr>
+								</tfoot>
 								</tbody>
 							</table>	
 							
