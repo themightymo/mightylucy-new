@@ -49,6 +49,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									   <th>Hours Invested</th>
 									   <th>Date Worked</th>
 									   <th>Developer</th>
+									   <th>Billable?</th>
 									   <th>Post ID</th>
 									</tr>
 								</thead>
@@ -88,6 +89,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										$singleUserStory['date_worked'] = get_field('date_worked');
 										$singleUserStory['author'] = get_the_author(); 
 										$singleUserStory['post_id'] = get_the_ID();
+										$singleUserStory['billable_or_nonbillable'] = get_the_terms (get_the_id(), 'time_entry_categories');
 										$userStories[] = $singleUserStory;
 										?>
 										<tr>
@@ -95,6 +97,15 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										<td><?php echo $singleUserStory['hours_invested']; ?></td>
 										<td><?php echo $singleUserStory['date_worked']; ?></td>
 										<td><?php echo $singleUserStory['author']; ?></td>
+										<td><?php 
+											// via http://code-tricks.com/get-the-current-taxonomy-of-the-post-using-get-the-terms-in-wordpress/											
+											$terms = get_the_terms( $post->ID , 'time_entry_categories' );
+											foreach ( $terms as $term ) {
+												$term_link = get_term_link( $term, 'time_entry_categories' );
+												echo $term->name;
+											}
+											?>
+										</td>
 										<td><?php edit_post_link('edit', '', '', $singleUserStory['post_id']);?></td>
 										</tr>
 										<?
@@ -113,11 +124,12 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								?>
 								<tfoot>
 									<tr>
-									   <th>Sitename</th>
-									   <th>Hours Invested</th>
-									   <th>Date Worked</th>
-									   <th>Developer</th>
-									   <th>Post ID</th>
+									   <td>Sitename</td>
+									   <td>Hours Invested</td>
+									   <td>Date Worked</td>
+									   <td>Developer</td>
+									   <td>Billable?</td>
+									   <td>Post ID</td>
 									</tr>
 								</tfoot>
 								</tbody>
