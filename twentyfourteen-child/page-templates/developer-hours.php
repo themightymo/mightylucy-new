@@ -50,7 +50,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									   <th>Date Worked</th>
 									   <th>Developer</th>
 									   <th>Billable?</th>
-									   <th>Post ID</th>
+									   <th>Post Meta</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -93,20 +93,39 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										$userStories[] = $singleUserStory;
 										?>
 										<tr>
-										<td><?php echo $singleUserStory['sitename']; ?></td>
-										<td><?php echo $singleUserStory['hours_invested']; ?></td>
-										<td><?php echo $singleUserStory['date_worked']; ?></td>
-										<td><?php echo $singleUserStory['author']; ?></td>
-										<td><?php 
-											// via http://code-tricks.com/get-the-current-taxonomy-of-the-post-using-get-the-terms-in-wordpress/											
-											$terms = get_the_terms( $post->ID , 'time_entry_categories' );
-											foreach ( $terms as $term ) {
-												$term_link = get_term_link( $term, 'time_entry_categories' );
-												echo $term->name;
-											}
-											?>
-										</td>
-										<td><?php edit_post_link('edit', '', '', $singleUserStory['post_id']);?></td>
+											<td><?php echo $singleUserStory['sitename']; ?></td>
+											<td><?php echo $singleUserStory['hours_invested']; ?></td>
+											<td><?php echo $singleUserStory['date_worked']; ?></td>
+											<td><?php echo $singleUserStory['author']; ?></td>
+											<td><?php 
+												// via http://code-tricks.com/get-the-current-taxonomy-of-the-post-using-get-the-terms-in-wordpress/											
+												$terms = get_the_terms( $post->ID , 'time_entry_categories' );
+												foreach ( $terms as $term ) {
+													$term_link = get_term_link( $term, 'time_entry_categories' );
+													echo $term->name;
+												}
+												?>
+											</td>
+											<td>
+												<ul>
+													<li><?php edit_post_link('Edit Time Entry', '', '', $singleUserStory['post_id']);?></li>
+													<?php
+													// Display the permalink for the to-dos that are linked to this time entry "related_user_stories"
+													$posts = get_field('related_user_stories');
+	 
+													if( $posts ): ?>
+													    
+													    <?php foreach( $posts as $post): // variable must be called $post (IMPORTANT) ?>
+													        <?php setup_postdata($post); ?>
+													        <li>
+													            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+													        </li>
+													    <?php endforeach; ?>
+													    
+													    <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
+													<?php endif; ?>
+												</ul>
+											</td>
 										</tr>
 										<?
 									endforeach; 
