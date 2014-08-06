@@ -72,7 +72,7 @@
 		}
 		?>
 		<div id="t_story_status"><table><?php echo $radiobuttons;?></table><div class="ajax_status"></div></div>
-		<p>TODO is requested by: <span style="font-weight:bold"><?php echo ucwords(get_the_author()); ?>  on <?php the_date();?></span></p>
+		<p>This to-do was requested by <span style="font-weight:bold"><?php echo ucwords(get_the_author()); ?> on <?php the_date();?></span> and is assigned to <span style="font-weight:bold"><?php $assigned_to = get_field('assigned_to'); echo $assigned_to['display_name']; ?></span>.</p>
 		
 		<?php
 		
