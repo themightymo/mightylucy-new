@@ -10,7 +10,7 @@
  */
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?><?php if(function_exists('live_edit')) { live_edit('post_title, post_content, assigned_to'); }?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?><?php if(function_exists('live_edit')) { live_edit('post_title, post_content, how_many_hours_will_this_to-do_require, assigned_to'); }?>>
 	<?php twentyfourteen_post_thumbnail(); ?>
 
 	<header class="entry-header">
