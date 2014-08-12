@@ -113,7 +113,7 @@ function cptui_register_my_cpt_time_entry() {
 add_action('init', 'cptui_register_my_cpt_user_story');
 function cptui_register_my_cpt_user_story() {
 	register_post_type('user_story', array(
-		'label' => 'User Stories',
+		'label' => 'To-Dos',
 		'description' => '',
 		'menu_icon'=> 'dashicons-tickets',
 		'public' => true,
@@ -127,9 +127,9 @@ function cptui_register_my_cpt_user_story() {
 		'has_archive' => true,
 		'supports' => array('title','editor','custom-fields','comments','author','page-attributes'),
 		'labels' => array (
-			'name' => 'User Stories',
+			'name' => 'To-Dos',
 			'singular_name' => 'To-Do',
-			'menu_name' => 'User Stories',
+			'menu_name' => 'To-Dos',
 			'add_new' => 'Add To-Do',
 			'add_new_item' => 'Add New To-Do',
 			'edit' => 'Edit',
@@ -137,9 +137,9 @@ function cptui_register_my_cpt_user_story() {
 			'new_item' => 'New To-Do',
 			'view' => 'View To-Do',
 			'view_item' => 'View To-Do',
-			'search_items' => 'Search User Stories',
-			'not_found' => 'No User Stories Found',
-			'not_found_in_trash' => 'No User Stories Found in Trash',
+			'search_items' => 'Search To-Dos',
+			'not_found' => 'No To-Dos Found',
+			'not_found_in_trash' => 'No To-Dos Found in Trash',
 			'parent' => 'Parent To-Do',
 		)
 	) 
