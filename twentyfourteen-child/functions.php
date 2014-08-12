@@ -800,4 +800,13 @@ function check_ifnew_task($postid) {
 }
 
 
-
+// Remove WPMUDEV's annoying dashboard nag
+add_action('admin_head', 'my_custom_fonts');
+function my_custom_fonts() {
+  echo '<style>
+	div.wpmudev-new, div.wpmudev-message, div.wpdv-msg {
+		display: none !important;
+	}
+	.wrap div.updated, .wrap div.error, .media-upload-form div.error, div#message { display: none !important; }
+	</style>';
+}
