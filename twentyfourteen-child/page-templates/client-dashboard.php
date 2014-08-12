@@ -277,15 +277,11 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 							
 							
-							<?php
-							echo $purchasedcontent;
-							?>
-							
-							
 							<h2>History of Hours Used</h2>
 							<ul>
 								<?php echo $history_hours_content; ?>
-							  
+								
+								<?php echo $purchasedcontent; ?>
 								Hours invested: <?php echo $totalhoursinvested; ?>
 								<p><strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong></p>
 								<p><strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p>

@@ -807,6 +807,5 @@ function my_custom_fonts() {
 	div.wpmudev-new, div.wpmudev-message, div.wpdv-msg {
 		display: none !important;
 	}
-	.wrap div.updated, .wrap div.error, .media-upload-form div.error, div#message { display: none !important; }
 	</style>';
 }
