@@ -96,3 +96,6 @@ li.redhr a{
     background:yellow;
 	color:#000;
 }
+#live-edit-panel { 
+	overflow: hidden;
+}
