@@ -1,5 +1,7 @@
 jQuery(document).ready(function($) {
+
     var table = $('#myTable').DataTable( {
+    
     	//via http://www.datatables.net/examples/advanced_init/footer_callback.html
         "footerCallback": function ( row, data, start, end, display ) {
             var api = this.api(), data;
@@ -11,8 +13,6 @@ jQuery(document).ready(function($) {
                     typeof i === 'number' ?
                         i : 0;
             };
- 
-            
  
             // Total over this page
             data = api.column( 1, { page: 'current'} ).data();
@@ -26,6 +26,9 @@ jQuery(document).ready(function($) {
             $( api.column( 1 ).footer() ).html(
                 'Hours Displayed Above: '+pageTotal
             );
-        }
-    } );	
+        },
+        "iDisplayLength": 50
+        
+    } );
+    	
 });
