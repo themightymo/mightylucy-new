@@ -86,6 +86,30 @@ get_sidebar();
         }); 
 	});
 	
+	/*estimate hours edit*/
+	
+	 $(document).on("click",".hours-estimate strong",function(){
+	    var oldestimatehour=$('.hours-estimate strong').text();
+		oldestimatehour=oldestimatehour.replace('hours','');
+		oldestimatehour=parseFloat(oldestimatehour.replace('hour',''));
+		var estimatehour = prompt("Please enter your estimated time in hours", $('.hours-estimate strong').text());
+		estimatehour=estimatehour.replace('hours','');
+		estimatehour=parseFloat(estimatehour.replace('hour',''));
+		if(oldestimatehour!=estimatehour){
+			var data = {
+				action: 'change_estimates',
+				data_status:estimatehour, 
+			};
+
+			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+			$.post(ajaxurl, data, function(response) {
+				//alert(response);
+			   $('.ajax_status').html(response);
+			}); 
+		}
+		
+	 });
+	
 })( jQuery );
 </script>
 <?php
