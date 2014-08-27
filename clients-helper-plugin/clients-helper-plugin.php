@@ -29,7 +29,11 @@ function my_scripts_method() {
 add_action( 'wp_enqueue_scripts', 'my_scripts_method' );
 
 function my_login_logo() { 
-	$image = plugins_url() . '/clients-helper-plugin/login-background-images/' . (mt_rand(1,27)) . '.jpg'; 
+	//Count the number of images in the folder - via https://stackoverflow.com/questions/12801370/count-how-many-files-in-directory-php
+	$fi = new FilesystemIterator(__DIR__ . '/login-background-images/', FilesystemIterator::SKIP_DOTS);
+	$numberOfImages = sprintf("%d", iterator_count($fi));
+	echo $numberOfImages;
+	$image = plugins_url() . '/clients-helper-plugin/login-background-images/' . (mt_rand(1,$numberOfImages)) . '.jpg'; 
 	?>
     <style type="text/css">
         body {
