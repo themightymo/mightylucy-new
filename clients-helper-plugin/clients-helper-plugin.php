@@ -28,10 +28,17 @@ function my_scripts_method() {
 }
 add_action( 'wp_enqueue_scripts', 'my_scripts_method' );
 
-function my_login_logo() { ?>
+function my_login_logo() { 
+	$image = plugins_url() . '/clients-helper-plugin/login-background-images/' . (mt_rand(1,27)) . '.jpg'; 
+	?>
     <style type="text/css">
         body {
-			background:#000 url('https://mightylucy.com/wp-content/uploads/2014/06/toby-lets-rock-this.jpg') repeat;
+			background:#000 url(<?php echo $image; ?>) repeat center center;
+			background-size: cover;
+		}
+		body #login h1 a, body .login h1 a {
+			background-size:auto !important;
+			display: block !important;
 		}
     </style>
 <?php }
