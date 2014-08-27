@@ -32,7 +32,7 @@ function my_login_logo() {
 	//Count the number of images in the folder - via https://stackoverflow.com/questions/12801370/count-how-many-files-in-directory-php
 	$fi = new FilesystemIterator(__DIR__ . '/login-background-images/', FilesystemIterator::SKIP_DOTS);
 	$numberOfImages = sprintf("%d", iterator_count($fi));
-	echo $numberOfImages;
+	//echo $numberOfImages;
 	$image = plugins_url() . '/clients-helper-plugin/login-background-images/' . (mt_rand(1,$numberOfImages)) . '.jpg'; 
 	?>
     <style type="text/css">
