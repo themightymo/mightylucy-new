@@ -161,7 +161,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							/*
 							 * Bust the non-persistent query cache. After rewriting any items
 							 * with a menu_order of 0, we want to make sure that we retrive
-							 * the newly stored data, not the cached query result.
+							 * the newly stored data, not the cached query result. Otherwise
+							 * the menu_order would remain zero for those items.
 							 */
 							$bogus_type = uniqid();
 							$args['post_type'] = array('user_story', $bogus_type);
