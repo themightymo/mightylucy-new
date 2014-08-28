@@ -158,8 +158,13 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								
 							endforeach; 
 							wp_reset_postdata();
-							
-							
+							/*
+							 * Bust the non-persistent query cache. After rewriting any items
+							 * with a menu_order of 0, we want to make sure that we retrive
+							 * the newly stored data, not the cached query result.
+							 */
+							$bogus_type = uniqid();
+							$args['post_type'] = array('user_story', $bogus_type);
 							$myposts = get_posts( $args );
 							$blog_id = get_current_blog_id();
 							$totalHoursEstimated = 0;
