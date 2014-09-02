@@ -148,10 +148,10 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								//update getsiteoption
 									if(get_site_option('next_menu_order')){
 									  $next_menu_order=get_site_option('next_menu_order');
-									  $wpdb->update('wp_'.$blogid.'_posts', array( 'menu_order' => $next_menu_order), array( 'ID' => $post->ID) );
+									  $wpdb->update('wp_'.$blog_id.'_posts', array( 'menu_order' => $next_menu_order), array( 'ID' => $post->ID) );
 									  update_site_option('next_menu_order',  $next_menu_order+1);
 									}else{
-									  $wpdb->update('wp_'.$blogid.'_posts', array( 'menu_order' => 1), array( 'ID' => $post->ID) );
+									  $wpdb->update('wp_'.$blog_id.'_posts', array( 'menu_order' => 1), array( 'ID' => $post->ID) );
 									  add_site_option('next_menu_order',2);
 									}								
 								}
