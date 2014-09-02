@@ -77,12 +77,14 @@ li.redhr a{
    text-align:center;
    margin:0px auto;
    width:40%;
+   
 }
 
 #t_story_status table td,
 #b_story_status table td{
    border:0px;
    padding:0px;
+   font-size:12px;
 }
 
 #change_status{

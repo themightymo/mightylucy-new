@@ -37,11 +37,14 @@ get_header(); ?>
 					$arr_user_story_done_or_not=get_field('user_story_done_or_not');
 					$doneornot=get_term($arr_user_story_done_or_not[0],'user_story_done_or_not');
 					if($doneornot->slug=='done'){ //if done
-					   $radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="bdone"   name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'" checked> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'">On Hold</td></tr>'; 		
+					   $radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="bdone"   name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'" checked> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'">On Hold</td><td><input id="bready-for-client-review" name="status_story" class="ready-for-client-review user_story_status"  type="radio"  value="ready-for-client-reviewxxx'.get_the_ID().'" >Ready for Client Review</td></tr>'; 		
 					}elseif($doneornot->slug=='active'){ //if active
-						$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"  checked> Active</td><td><input id="bdone" name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'">On Hold</td></tr>'; 
-					}else{ //if onhold
-						$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="bdone" name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'" checked>On Hold</td></tr>'; 
+						$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"  checked> Active</td><td><input id="bdone" name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'">On Hold</td><td><input id="bready-for-client-review" name="status_story" class="ready-for-client-review user_story_status"  type="radio"  value="ready-for-client-reviewxxx'.get_the_ID().'" >Ready for Client Review</td></tr>';
+					}elseif($doneornot->slug=='on-hold'){ //on-hold
+						$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="bdone" name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'" checked>On Hold</td><td><input id="bready-for-client-review" name="status_story" class="ready-for-client-review user_story_status"  type="radio"  value="ready-for-client-reviewxxx'.get_the_ID().'" >Ready for Client Review</td></tr>'; 
+					
+					}else{ //if ready-for-client-review
+						$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="bactive"  name="status_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="bdone" name="status_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="bon-hold" name="status_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'" >On Hold</td><td><input id="bready-for-client-review" name="status_story" class="ready-for-client-review user_story_status"  type="radio"  value="ready-for-client-reviewxxx'.get_the_ID().'" checked>Ready for Client Review</td></tr>'; 
 					}
 					?>
 					
@@ -66,10 +69,23 @@ get_sidebar();
 	   }else if(status_value=='bactive'){
 	       $("#tactive").prop("checked", true);
 	   }
+	   
 	   if(status_value=='tdone'){
 	       $("#bdone").prop("checked", true);
 	   }else if(status_value=='bdone'){
 	       $("#tdone").prop("checked", true);
+	   }
+	   
+	   if(status_value=='ton-hold'){
+	       $("#bon-hold").prop("checked", true);
+	   }else if(status_value=='bon-hold'){
+	       $("#ton-hold").prop("checked", true);
+	   }
+	   
+	   if(status_value=='tready-for-client-review'){
+	       $("#bready-for-client-review").prop("checked", true);
+	   }else if(status_value=='bready-for-client-review'){
+	       $("#tready-for-client-review").prop("checked", true);
 	   }
 	});
    
@@ -85,30 +101,6 @@ get_sidebar();
            $('.ajax_status').html(response);
         }); 
 	});
-	
-	/*estimate hours edit*/
-	
-	 $(document).on("click",".hours-estimate strong",function(){
-	    var oldestimatehour=$('.hours-estimate strong').text();
-		oldestimatehour=oldestimatehour.replace('hours','');
-		oldestimatehour=parseFloat(oldestimatehour.replace('hour',''));
-		var estimatehour = prompt("Please enter your estimated time in hours", $('.hours-estimate strong').text());
-		estimatehour=estimatehour.replace('hours','');
-		estimatehour=parseFloat(estimatehour.replace('hour',''));
-		if(oldestimatehour!=estimatehour){
-			var data = {
-				action: 'change_estimates',
-				data_status:estimatehour, 
-			};
-
-			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-			$.post(ajaxurl, data, function(response) {
-				//alert(response);
-			   $('.ajax_status').html(response);
-			}); 
-		}
-		
-	 });
 	
 })( jQuery );
 </script>
