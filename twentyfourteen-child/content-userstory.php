@@ -13,7 +13,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php twentyfourteen_post_thumbnail(); ?>
 
-	<header class="entry-header" <?php if(function_exists('live_edit')) { live_edit('post_title, post_content, how_many_hours_will_this_to-do_require, assigned_to'); }?>>
+	<header class="entry-header" <?php if(function_exists('live_edit')) { live_edit('post_title, post_content, user_story_done_or_not, how_many_hours_will_this_to-do_require, assigned_to'); }?>>
 		<?php if ( in_array( 'category', get_object_taxonomies( get_post_type() ) ) && twentyfourteen_categorized_blog() ) : ?>
 		<div class="entry-meta">
 			<span class="cat-links"><?php echo get_the_category_list( _x( ', ', 'Used between list items, there is a space after the comma.', 'twentyfourteen' ) ); ?></span>
