@@ -63,17 +63,10 @@
 			echo 'Please save this ToDo again. This ToDo is not saved properly. Thanks.';
 		}
 		$doneornot=get_term($arr_user_story_done_or_not[0],'user_story_done_or_not');
-		if($doneornot->slug=='done'){ //if done
-		   $radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="tdone"   name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'" checked> Done</td><td><input id="ton-hold" name="tstatus_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'"> On Hold</td><td><input id="tready-for-client-review" name="tstatus_story" class="ready-for-client-review user_story_status"  type="radio"  value="ready-for-client-reviewxxx'.get_the_ID().'" > Ready For Client Review</td></tr>';		
-		}elseif($doneornot->slug=='active'){ //if active
-			$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"  checked> Active</td><td><input id="tdone" name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="ton-hold" name="tstatus_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'"> On Hold</td><td><input id="tready-for-client-review" name="tstatus_story" class="ready-for-client-review user_story_status"  type="radio"  value="ready-for-client-reviewxxx'.get_the_ID().'" > Ready For Client Review</td></tr>'; 
-		}elseif($doneornot->slug=='on-hold'){ //if onhold
-			$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="tdone" name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="ton-hold" name="tstatus_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'" checked> On Hold</td><td><input id="tready-for-client-review" name="tstatus_story" class="ready-for-client-review user_story_status"  type="radio"  value="ready-for-client-reviewxxx'.get_the_ID().'" > Ready For Client Review</td></tr>'; 
-		}else{ //if onhold
-			$radiobuttons='<tr><td><h5>Status:</h5></td><td><input id="tactive"  name="tstatus_story" class="active user_story_status" type="radio"  value="activexxx'.get_the_ID().'"> Active</td><td><input id="tdone" name="tstatus_story" class="done user_story_status"  type="radio"  value="donexxx'.get_the_ID().'"> Done</td><td><input id="ton-hold" name="tstatus_story" class="on-hold user_story_status"  type="radio"  value="on-holdxxx'.get_the_ID().'"> On Hold</td><td><input id="tready-for-client-review" name="tstatus_story" class="ready-for-client-review user_story_status"  type="radio"  value="ready-for-client-reviewxxx'.get_the_ID().'" checked> Ready For Client Review</td></tr>'; 
-		}
+		 $options='<tr><td><h5>Status:</h5></td><td><select id="topselect"  status="'.$doneornot->slug.'xxx'.get_the_ID().'"  class="user_story_status"> <option  value="activexxx'.get_the_ID().'"> Active</option><option  value="donexxx'.get_the_ID().'"> Done</option> <option  value="on-holdxxx'.get_the_ID().'"> On Hold</option><option  value="ready-for-client-reviewxxx'.get_the_ID().'" > Ready For Client Review</option></select></td></tr>';
+		
 		?>
-		<div id="t_story_status"><table><?php echo $radiobuttons;?></table><div class="ajax_status"></div></div>
+		<div id="t_story_status"><table><?php echo $options;?></table><div class="ajax_status"></div></div>
 		<p>This to-do was requested by <span style="font-weight:bold"><?php echo ucwords(get_the_author()); ?> on <?php the_date();?></span> and is assigned to <span style="font-weight:bold"><?php $assigned_to = get_field('assigned_to'); echo $assigned_to['display_name']; ?></span>.</p>
 		
 		<?php
