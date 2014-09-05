@@ -290,7 +290,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 							
 							<h2>Completed To-Do's</h2>
-							<ul>
+							<a id="togglecomplete" href="#">Toggle Completed To-Dos</a>
+							<ul id="completed_to_dos">
 							<?php
 							$args = array( 
 								'posts_per_page' => -1, 
@@ -315,7 +316,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 							
 							<h2>History of Hours Used</h2>
-							<ul>
+							<a id="togglehistoryhours" href="#">Toggle History Hours</a>
+							<ul id="history_hours">
 								<?php echo $history_hours_content; ?>
 								
 								<?php echo $purchasedcontent; ?>
@@ -346,6 +348,24 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 					}
 				endwhile;
 			?>
+			<!--toggle historyhours and completed todos scripts -->
+			<script>
+				(function($){
+					//init toggle off
+					$('#completed_to_dos').hide();
+					$('#history_hours').hide();
+					$('#togglecomplete').click(function(){
+					    $('#completed_to_dos').toggle( "slow", function() {
+							// Animation complete.
+						});
+					});
+					$('#togglehistoryhours').click(function(){
+						$('#history_hours').toggle( "slow", function() {
+							// Animation complete.
+						});
+					});
+				})( jQuery );
+			</script>
 		</div><!-- #content -->
 	</div><!-- #primary -->
 </div><!-- #main-content -->
