@@ -40,7 +40,9 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 	//NOTE: I'm going to transfer it here to have control with the color coding classes
 	$args = array( 
 		'posts_per_page' => -1, 
-		'post_type' => 'time_entry' 
+		'post_type' => 'time_entry',
+		'orderby' => 'date',
+		'order' => 'DESC'
 	);
 	$myposts = get_posts( $args );
 	$totalhoursinvested = 0;
@@ -319,7 +321,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							<a id="togglehistoryhours" href="#">Toggle History Hours</a>
 							<ul id="history_hours">
 								<?php echo $history_hours_content; ?>
-								
+							</ul>	
 								<?php echo $purchasedcontent; ?>
 								Hours invested: <?php echo $totalhoursinvested; ?>
 								<p><strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong></p>
