@@ -28,8 +28,9 @@
 			endif;
 		?>
 		
+		<?php if (get_field('how_many_hours_will_this_to-do_require')>0) { ?>
 		<div class="hours-estimate" style="clear:both;margin-bottom:1em;">We estimate that this to-do will require <strong><?php the_field('how_many_hours_will_this_to-do_require'); ?> <?php if (get_field('how_many_hours_will_this_to-do_require') == 1) { echo 'hour'; } else { echo 'hours'; } ?></strong>.</div>
-
+        <?php } ?>
 		<div class="entry-meta">
 			<?php
 				if ( 'post' == get_post_type() )

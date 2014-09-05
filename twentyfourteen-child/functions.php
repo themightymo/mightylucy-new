@@ -345,7 +345,7 @@ if(function_exists("register_field_group"))
 					'40' => '1 week',
 					'80' => '1-2 weeks',
 				),
-				'default_value' => '',
+				'default_value' => 0,
 				'allow_null' => 0,
 				'multiple' => 0,
 			),
