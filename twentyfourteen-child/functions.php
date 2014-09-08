@@ -809,3 +809,47 @@ function my_custom_fonts() {
 	}
 	</style>';
 }
+
+/*Bio Custom Post Type*/
+add_action( 'init', 'register_cpt_bio' );
+
+function register_cpt_bio() {
+
+    $labels = array( 
+        'name' => _x( 'Bios', 'bio' ),
+        'singular_name' => _x( 'Bio', 'bio' ),
+        'add_new' => _x( 'Add New', 'bio' ),
+        'add_new_item' => _x( 'Add New Bio', 'bio' ),
+        'edit_item' => _x( 'Edit Bio', 'bio' ),
+        'new_item' => _x( 'New Bio', 'bio' ),
+        'view_item' => _x( 'View Bio', 'bio' ),
+        'search_items' => _x( 'Search Bios', 'bio' ),
+        'not_found' => _x( 'No bios found', 'bio' ),
+        'not_found_in_trash' => _x( 'No bios found in Trash', 'bio' ),
+        'parent_item_colon' => _x( 'Parent Bio:', 'bio' ),
+        'menu_name' => _x( 'Bios', 'bio' ),
+    );
+
+    $args = array( 
+        'labels' => $labels,
+        'hierarchical' => false,
+        
+        'supports' => array( 'title', 'excerpt' ),
+        
+        'public' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        
+        
+        'show_in_nav_menus' => true,
+        'publicly_queryable' => true,
+        'exclude_from_search' => false,
+        'has_archive' => true,
+        'query_var' => true,
+        'can_export' => true,
+        'rewrite' => true,
+        'capability_type' => 'post'
+    );
+
+    register_post_type( 'bio', $args );
+}
