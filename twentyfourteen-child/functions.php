@@ -834,7 +834,7 @@ function register_cpt_bio() {
         'labels' => $labels,
         'hierarchical' => false,
         
-        'supports' => array( 'title', 'excerpt' ),
+        'supports' => array( 'title','editor','excerpt' ),
         
         'public' => true,
         'show_ui' => true,
@@ -853,3 +853,15 @@ function register_cpt_bio() {
 
     register_post_type( 'bio', $args );
 }
+
+/**
+ * Bio Scripts
+ */
+function bio_scripts() {
+   if(is_singular('bio')){ 
+		//wp_enqueue_style( 'style-bio', get_stylesheet_uri() );
+		wp_enqueue_script('script-bio','//code.jquery.com/ui/1.11.1/jquery-ui.js', array(), '1.0.0', true );
+	}
+}
+
+add_action( 'wp_enqueue_scripts', 'bio_scripts');
