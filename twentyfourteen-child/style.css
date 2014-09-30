@@ -108,3 +108,6 @@ li.redhr a{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 }
+.wp-editor-container {
+	border:1px solid #ccc;
+}
