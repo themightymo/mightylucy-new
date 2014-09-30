@@ -9,7 +9,7 @@ if(function_exists("register_field_group"))
 		'fields' => array (
 			array (
 				'key' => 'field_542acea3e8a30',
-				'label' => 'notes',
+				'label' => 'Notes',
 				'name' => 'notes',
 				'type' => 'textarea',
 				'default_value' => '',
