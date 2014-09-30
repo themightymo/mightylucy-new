@@ -915,3 +915,13 @@ function bio_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'bio_scripts');
+
+
+// Add WYSIWYG Comments - via https://www.gavick.com/blog/tinymce-editor-in-the-comments-section/
+function gk_comment_form( $fields ) {
+    ob_start();
+    wp_editor( '', 'comment', array( 'teeny' => true ));
+    $fields['comment_field'] = ob_get_clean();
+    return $fields;
+}
+add_filter( 'comment_form_defaults', 'gk_comment_form' );
