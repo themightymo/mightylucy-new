@@ -103,7 +103,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								endif;
 							?>
 							
-							<?php if(get_field('notes','options')){ ?>
+							<?php if(get_field('notes','options') && current_user_can('manage_options')){ ?>
 							   <div class="notes"><?php the_field('notes','options');?></div>
 							<?php } ?>
 					
