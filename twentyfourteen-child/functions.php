@@ -1,6 +1,46 @@
 <?php
 if(function_exists("register_field_group"))
 {
+	
+	/*add WYISWYG on Client Dashboard as Notes*/
+	register_field_group(array (
+		'id' => 'acf_notes',
+		'title' => 'Notes',
+		'fields' => array (
+			array (
+				'key' => 'field_542acea3e8a30',
+				'label' => 'notes',
+				'name' => 'notes',
+				'type' => 'textarea',
+				'default_value' => '',
+				'placeholder' => '',
+				'maxlength' => '',
+				'rows' => '',
+				'formatting' => 'br',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'options_page',
+					'operator' => '==',
+					'value' => 'acf-options',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'no_box',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+	
+	/*End--- add WYISWYG on Client Dashboard as Notes*/
+	
 	register_field_group(array (
 		'id' => 'acf_change-request',
 		'title' => 'Change Request',
