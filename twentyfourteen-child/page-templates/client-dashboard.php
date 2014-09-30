@@ -28,7 +28,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 		$purchasedcontent='<h2>Purchase History</h2>';
 		$purchasedcontent.='<ul>';
 		while ( have_rows('prepaid_hours', 'options') ) : the_row();
-			$purchasedcontent.= '<li>You purchased ' . get_sub_field('number_of_hours_purchased', 'options') . ' hours on ' . date("F j, Y", strtotime(get_sub_field('date_of_purchase', 'options'))) . '</li>';
+			$purchasedcontent.= '<li>You purchased ' . get_sub_field('number_of_hours_purchased', 'options') . ' hours on ' . date("F j, Y", strtotime(get_sub_field('date_of_purchase', 'options'))) . ' <em>'.get_sub_field('hours_description', 'options').'</em></li>';
 			$totalhourspurchased += get_sub_field('number_of_hours_purchased', 'options');
 		endwhile;
 		$purchasedcontent.='</ul>';
