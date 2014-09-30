@@ -9,14 +9,12 @@ if(function_exists("register_field_group"))
 		'fields' => array (
 			array (
 				'key' => 'field_542acea3e8a30',
-				'label' => 'Notes',
+				'label' => 'notes',
 				'name' => 'notes',
-				'type' => 'textarea',
+				'type' => 'wysiwyg',
 				'default_value' => '',
-				'placeholder' => '',
-				'maxlength' => '',
-				'rows' => '',
-				'formatting' => 'br',
+				'toolbar' => 'full',
+				'media_upload' => 'yes',
 			),
 		),
 		'location' => array (

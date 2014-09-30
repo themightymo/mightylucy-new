@@ -102,6 +102,10 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									the_title( '<h1 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h1>' );
 								endif;
 							?>
+							
+							<?php if(get_field('notes','options')){ ?>
+							   <div class="notes"><?php the_field('notes','options');?></div>
+							<?php } ?>
 					
 							<div class="entry-meta">
 								<?php
