@@ -924,4 +924,4 @@ function gk_comment_form( $fields ) {
     $fields['comment_field'] = ob_get_clean();
     return $fields;
 }
-add_filter( 'comment_form_defaults', 'gk_comment_form' );
+//add_filter( 'comment_form_defaults', 'gk_comment_form' );
