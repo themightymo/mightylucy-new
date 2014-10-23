@@ -333,7 +333,7 @@ if(function_exists("register_field_group"))
 					0 => 'post_type',
 					1 => 'post_title',
 				),
-				'max' => '',
+				'max' => '1',
 			),
 		),
 		'location' => array (
