@@ -41,46 +41,52 @@ get_header(); ?>
 			?>
 			
 			<div class="entry-content">
-			<?php 
+			
+				<?php 
+				if ( current_user_can('manage_options') ) {
 
-			/*
-			*  Query posts for a relationship value.
-			*  This method uses the meta_query LIKE to match the string "123" to the database value a:1:{i:0;s:3:"123";} (serialized array)
-			*/
+				
 	
-			$doctors = get_posts(array(
-				'post_type' => 'time_entry',
-				'meta_query' => array(
-					array(
-						'key' => 'related_user_stories', // name of custom field
-						'value' => '"' . get_the_ID() . '"', // matches exaclty "123", not just 123. This prevents a match for "1234"
-						'compare' => 'LIKE'
-					)
-				)
-			));
-	
-			?>
-			<?php if( $doctors ): ?>
-				<quote>
-					Time Entries for This To-Do:
-					<ul>
-					<?php foreach( $doctors as $doctor ): ?>
-						<?php 
-		
-						$photo = get_field('hours_invested', $doctor->ID);
-		
-						?>
-						<li>
-							<a href="<?php echo get_permalink( $doctor->ID ); ?>">
-								<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours)
-								<?php $totalHoursWorked += $photo; ?> 
-							</a>
-						</li>
-					<?php endforeach; ?>
-						<li>Total hours invested on this to-do: <?php echo $totalHoursWorked; ?></li>
-					</ul>
-				</quote>
-			<?php endif; ?>
+					/*
+					*  Query posts for a relationship value.
+					*  This method uses the meta_query LIKE to match the string "123" to the database value a:1:{i:0;s:3:"123";} (serialized array)
+					*/
+			
+					$doctors = get_posts(array(
+						'post_type' => 'time_entry',
+						'meta_query' => array(
+							array(
+								'key' => 'related_user_stories', // name of custom field
+								'value' => '"' . get_the_ID() . '"', // matches exaclty "123", not just 123. This prevents a match for "1234"
+								'compare' => 'LIKE'
+							)
+						)
+					));
+			
+					?>
+					<?php if( $doctors ): ?>
+						<quote>
+							Time Entries for This To-Do:
+							<ul>
+							<?php foreach( $doctors as $doctor ): ?>
+								<?php 
+				
+								$photo = get_field('hours_invested', $doctor->ID);
+				
+								?>
+								<li>
+									<a href="<?php echo get_permalink( $doctor->ID ); ?>">
+										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours)
+										<?php $totalHoursWorked += $photo; ?> 
+									</a>
+								</li>
+							<?php endforeach; ?>
+								<li>Total hours invested on this to-do: <?php echo $totalHoursWorked; ?></li>
+							</ul>
+						</quote>
+					<?php 
+					endif; 
+				} ?>
 			
 			</div><!-- .entry-content -->
 
