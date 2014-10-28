@@ -386,6 +386,7 @@ if(function_exists("register_field_group"))
 					'8-16' => '16',
 					'16-32' => '32',
 					'32-48' => '48',*/
+					'Not Estimated' => 'Not Estimated',
 					'1' => '0-1 hours',
 					'2' => '1-2 hours',
 					'4' => 'half day',
