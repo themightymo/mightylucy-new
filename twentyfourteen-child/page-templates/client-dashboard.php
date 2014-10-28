@@ -46,22 +46,24 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 	);
 	$myposts = get_posts( $args );
 	$totalhoursinvested = 0;
+	
 	foreach ( $myposts as $post ) : setup_postdata( $post ); 
-	
-	$date1 = get_field('date_worked');
-	
-	if ($date1) {
-
-		$date3 = DateTime::createFromFormat('Ymd', get_field('date_worked'));
-		$date4 = $date3->format('d M, Y');
-		$date3 = $date4;
-	} else {
-		$date3='No specified date';			
-	}
-	
-	    $history_hours_content.='<li><a href="'. get_permalink() .'">'. get_the_title().': '.get_field('hours_invested').  ' hours ( '.$date3 .' -by: ' .get_the_author().' )</a></li>';
+		$date1 = get_field('date_worked');
+		if ($date1) {
+			$date3 = DateTime::createFromFormat('Ymd', get_field('date_worked'));
+			$date4 = $date3->format('d M, Y');
+			$date3 = $date4;
+		} else {
+			$date3='No specified date';			
+		}
+		
+		$related_user_stories = get_field('related_user_stories', $post->ID);
+		
+	    $history_hours_content.= '<li><a href="'. get_permalink() .'">'. $related_user_stories[0]->post_title .': '.get_field('hours_invested').  ' hours ( '.$date3 .' -by: ' .get_the_author().' )</a></li>';
+	    
 		$totalhoursinvested += get_field('hours_invested'); 
 	endforeach; 
+	
 	$hoursAvailable = $totalhourspurchased-$totalhoursinvested;
 	if($hoursAvailable>2){
 	   $hrclass='greenhr';
