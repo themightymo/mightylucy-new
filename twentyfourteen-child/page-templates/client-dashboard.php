@@ -253,7 +253,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$myposts = get_posts( $args ); ?>
 							<?php if ($myposts) : ?>
 							<h2>Ready For Client Review</h2>
-							<ul>
+							<a id="ready_for_client_review" href="#">Toggle History Hours</a>
+							<ul id="ready_for_client">
 							<?php
 							foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
 								<li>
@@ -281,7 +282,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							$totalPosts = count($myposts);
 							if ($totalPosts > 0) { ?>
 								<h2>On Hold To-Do's</h2>
-								<ul>
+								<a id="on_hold_todos" href="#">Toggle History Hours</a>
+								<ul id="on_hold">
 								<?php
 								foreach ( $myposts as $post ) : setup_postdata( $post ); ?>
 									<li>
@@ -360,17 +362,33 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 			<script>
 				(function($){
 					//init toggle off
+					$('#ready_for_client').hide();
+					$('#on_hold').hide();
 					$('#completed_to_dos').hide();
 					$('#history_hours').hide();
+					$('#ready_for_client_review').click(function(){
+					    $('#ready_for_client').toggle( "slow", function() {
+							// Animation complete.
+						});
+						event.preventDefault();
+					});
+					$('#on_hold_todos').click(function(){
+					    $('#on_hold').toggle( "slow", function() {
+							// Animation complete.
+						});
+						event.preventDefault();
+					});
 					$('#togglecomplete').click(function(){
 					    $('#completed_to_dos').toggle( "slow", function() {
 							// Animation complete.
 						});
+						event.preventDefault();
 					});
 					$('#togglehistoryhours').click(function(){
 						$('#history_hours').toggle( "slow", function() {
 							// Animation complete.
 						});
+						event.preventDefault();
 					});
 				})( jQuery );
 			</script>
