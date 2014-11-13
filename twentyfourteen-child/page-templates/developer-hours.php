@@ -75,7 +75,12 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									
 									$args = array( 
 										'posts_per_page' => -1,
-										'post_type' => 'time_entry'
+										'post_type' => 'time_entry',
+										'date_query' => array(
+											array(
+												'after' => date('Y-m-d', strtotime('-10 days')) //Gets the last 10 days of posts
+											),
+										),
 									);
 										
 									$myposts = get_posts( $args );
