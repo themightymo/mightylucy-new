@@ -25,8 +25,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 	$totalhourspurchased = 0;
 	// check if the repeater field has rows of data
 	if( have_rows('prepaid_hours', 'options') ):
-		$purchasedcontent='<h2>Purchase History</h2>';
-		$purchasedcontent.='<ul>';
+		$purchasedcontent='<h2>Purchase History</h2><a id="togglepurchasehistory" href="#">Toggle History Hours</a>';
+		$purchasedcontent.='<ul id="purchase_history">';
 		while ( have_rows('prepaid_hours', 'options') ) : the_row();
 			$purchasedcontent.= '<li>You purchased ' . get_sub_field('number_of_hours_purchased', 'options') . ' hours on ' . date("F j, Y", strtotime(get_sub_field('date_of_purchase', 'options'))) . ' <em>'.get_sub_field('hours_description', 'options').'</em></li>';
 			$totalhourspurchased += get_sub_field('number_of_hours_purchased', 'options');
@@ -331,9 +331,10 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								<?php echo $history_hours_content; ?>
 							</ul>	
 								<?php echo $purchasedcontent; ?>
-								Hours invested: <?php echo $totalhoursinvested; ?>
-								<p><strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong></p>
-								<p><strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p>
+								<div style="clear: both;"></div>
+								<p>Hours invested: <?php echo $totalhoursinvested; ?><br />
+								<strong class="<?php echo  $hrclass; ?>">Available hours remaining: <?php echo $hoursAvailable; ?></strong><br />
+								<strong>Hours required (estimated): <?php echo $totalHoursEstimated; ?></strong></p>
 
 									
 								<a href="https://www.themightymo.com/agreements/hourly-wordpress-support-agreement/">Purchase additional support hours.</a>
@@ -362,10 +363,11 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 			<script>
 				(function($){
 					//init toggle off
-					$('#ready_for_client').hide();
+					//$('#ready_for_client').hide();
 					$('#on_hold').hide();
 					$('#completed_to_dos').hide();
 					$('#history_hours').hide();
+					$('#purchase_history').hide();
 					$('#ready_for_client_review').click(function(){
 					    $('#ready_for_client').toggle( "slow", function() {
 							// Animation complete.
@@ -390,6 +392,13 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 						});
 						event.preventDefault();
 					});
+					$('#togglepurchasehistory').click(function(){
+						$('#purchase_history').toggle( "slow", function() {
+							// Animation complete.
+						});
+						event.preventDefault();
+					});
+					
 				})( jQuery );
 			</script>
 		</div><!-- #content -->
