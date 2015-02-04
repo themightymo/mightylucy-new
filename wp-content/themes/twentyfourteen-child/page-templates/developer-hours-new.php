@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: REPORT: All Developer Hours
+ * Template Name: REPORT: All Developer Hours NEW
  *
  * @package WordPress
  * @subpackage Twenty_Fourteen
@@ -42,6 +42,41 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 						
 						<div class="entry-content">
 							
+							
+<?php
+$parameters = array(
+	'post_type'	=> 'user_story'
+);
+
+network_query_posts( $parameters );
+$myvar = network_query_posts( $parameters );
+echo '<pre>';
+print_r($myvar);
+echo '</pre>';
+if ( network_have_posts() ) {
+	while ( network_have_posts() ) {
+		network_the_post();
+		?>
+		<a href="<?php echo network_get_permalink(); ?>">
+		<strong><?php network_the_title() ?></strong>
+		</a><br>
+		<?php 
+		switch_to_blog($blog_id);
+
+			the_field( "how_many_hours_will_this_to-do_require", $post_id );
+		
+		restore_current_blog();
+		
+		global $post;
+		the_field( "how_many_hours_will_this_to-do_require", $post_id );
+		?>
+
+		<?php
+	}
+}
+?>							
+							
+							<?php /*
 							<table id="myTable" class="tablesorter">
 								<thead>
 									<tr>
@@ -75,12 +110,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									
 									$args = array( 
 										'posts_per_page' => -1,
-										'post_type' => 'time_entry',
-										'date_query' => array(
-											array(
-												'after' => date('Y-m-d', strtotime('-10 days'))
-											),
-										),
+										'post_type' => 'time_entry'
 									);
 										
 									$myposts = get_posts( $args );
@@ -159,7 +189,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								</tbody>
 							</table>	
 							
-							<input id="table2CSV" value="Export as CSV text" type="button" onclick="jquery('#myTable').table2CSV()">						
+							<input id="table2CSV" value="Export as CSV text" type="button" onclick="jquery('#myTable').table2CSV()">								*/ ?>
 						</div><!-- .entry-content -->
 						
 					</article><!-- #post-## -->
