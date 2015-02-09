@@ -104,6 +104,10 @@ wp-content/themes/twentyfourteen/
 wp-content/plugins/json-api/
 wp-content/plugins/wp-ajaxify-comments/
 wp-content/plugins/wp-migrate-db-pro/
+<<<<<<< HEAD
+=======
+
+>>>>>>> production
 
 # local self-signed certificate for MAMP PRO
 mightylucy.dev.crt
