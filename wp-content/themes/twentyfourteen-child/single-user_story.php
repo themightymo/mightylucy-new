@@ -7,6 +7,7 @@
  * @since Twenty Fourteen 1.0
  */
 
+
 get_header(); ?>
 
 	<div id="primary" class="content-area">
@@ -79,6 +80,7 @@ get_header(); ?>
 										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours)
 										<?php $totalHoursWorked += $photo; ?> 
 									</a>
+									<div><?php var_dump( $doctor ); ?></div>
 								</li>
 							<?php endforeach; ?>
 								<li>Total hours invested on this to-do: <?php echo $totalHoursWorked; ?></li>
