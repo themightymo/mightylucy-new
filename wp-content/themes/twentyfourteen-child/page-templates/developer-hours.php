@@ -32,7 +32,7 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							<div class="entry-meta">
 								
 							</div>
-							<h1 class="entry-title">REPORT: Developer Hours Worked</h1>	
+							<h1 class="entry-title">test REPORT: Developer Hours Worked</h1>
 											
 							<div class="entry-meta">
 								
