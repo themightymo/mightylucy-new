@@ -15,7 +15,7 @@ get_header(); ?>
 			
 				<?php 
 				if ( current_user_can('manage_options') ) { ?>
-					<em>This to-do required <strong><?php echo get_field('hours_invested'); ?> hours</strong>.</em> <?php
+					<em>This time entry is: <strong><?php echo get_field('hours_invested'); ?> hours</strong>.</em> <?php
 				} ?>
 			
 			</div><!-- .entry-content -->
