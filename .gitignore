@@ -158,7 +158,6 @@ wp-content/mysql.sql
 
 # site environment variants
 .htaccess
-htaccess
 
 # database search-and-replace folder
 /snr
