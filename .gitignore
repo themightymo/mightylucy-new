@@ -110,7 +110,6 @@ wp-content/plugins/wp-migrate-db-pro/
 mightylucy.dev.crt
 mightylucy.dev.key
 
-
 # wpengine specific
 .smushit-status
 .gitattributes
@@ -155,6 +154,13 @@ wp-content/mysql.sql
 /wp-content/themes/twentyten
 /wp-content/themes/index.php
 /wp-content/plugins/index.php
+/wp-content/themes/twentyfifteen
+
+# site environment variants
+.htaccess
+
+# database search-and-replace folder
+/snr
 
 # large/disallowed file types
 # a CDN should be used for these

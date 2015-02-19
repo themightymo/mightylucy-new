@@ -32,15 +32,17 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							<div class="entry-meta">
 								
 							</div>
-							<h1 class="entry-title">test REPORT: Developer Hours Worked</h1>
+							<h1 class="entry-title">REPORT: Developer Hours Worked</h1>
 											
 							<div class="entry-meta">
 								
 							</div><!-- .entry-meta -->
 						</header><!-- .entry-header -->
 					
-						
 						<div class="entry-content">
+						<div>
+							<input type="date" id="rangeFrom" /> <i>to</i> <input type="date" id="rangeTo" />
+						</div>
 							
 							<table id="myTable" class="tablesorter">
 								<thead>
@@ -92,6 +94,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										$singleUserStory['sitename'] = $blog_details->blogname;
 										$singleUserStory['hours_invested'] = get_field('hours_invested');
 										$singleUserStory['date_worked'] = get_field('date_worked');
+//										$formatted_date_worked = substr(get_field('date_worked'),)."/" . day . "/" . year;
+//										$newformat = date('Y-m-d',$time);
 										$singleUserStory['author'] = get_the_author(); 
 										$singleUserStory['post_id'] = get_the_ID();
 										$singleUserStory['billable_or_nonbillable'] = get_the_terms (get_the_id(), 'time_entry_categories');
