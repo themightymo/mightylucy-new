@@ -926,3 +926,14 @@ function gk_comment_form( $fields ) {
     return $fields;
 }
 //add_filter( 'comment_form_defaults', 'gk_comment_form' );
+
+function dev_hours_scripts() {
+	if(is_page('report-all-dev-hours')){
+		wp_enqueue_script( 'dev-hours', get_template_directory_uri() . '/js/dev-hours.js', array(), '1.0.0', true );
+	}	
+}
+
+
+add_action( 'wp_enqueue_scripts', 'dev_hours_scripts');
+
+
