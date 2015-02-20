@@ -40,8 +40,8 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 						</header><!-- .entry-header -->
 					
 						<div class="entry-content">
-						<div>
-							<input type="date" id="rangeFrom" /> <i>to</i> <input type="date" id="rangeTo" />
+						<div id="date-ranges">
+							<input type="date" id="rangeFrom" value="<?php echo date('Y-m-d'); ?>"/> <i>to</i> <input type="date" id="rangeTo" value="<?php echo date('Y-m-d'); ?>" />
 						</div>
 							
 							<table id="myTable" class="tablesorter">

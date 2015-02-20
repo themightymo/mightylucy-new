@@ -3,26 +3,7 @@
  *
  */
 ( function( $ ) {
-
-/*
-$.fn.dataTable.ext.search.push(
-    function( settings, data, dataIndex ) {
-        var min = parseInt( $('#min').val(), 10 );
-        var max = parseInt( $('#max').val(), 10 );
-        var age = parseFloat( data[1] ) || 0; // use data for the age column
- 
-        if ( ( isNaN( min ) && isNaN( max ) ) ||
-             ( isNaN( min ) && age <= max ) ||
-             ( min <= age   && isNaN( max ) ) ||
-             ( min <= age   && age <= max ) )
-        {
-            return true;
-        }
-        return false;
-    }
-);
-*/
-
+	
 	$.fn.dataTable.ext.search.push(
 	    function( settings, data, dataIndex ) {
 		    var from = $('#rangeFrom').val();
@@ -48,11 +29,13 @@ $.fn.dataTable.ext.search.push(
 
 	$( function() {
 		var table = $('#myTable').DataTable();
-		
+						
 		$('#rangeFrom, #rangeTo').change( function() {
 			table.draw();
 		} );
 		
+		$('#rangeTo').trigger( 'change' );
+
 	} );
 	
 } )( jQuery );
