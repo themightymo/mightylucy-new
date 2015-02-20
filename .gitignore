@@ -100,7 +100,6 @@ wp-content/plugins/wordpress-mu-sitewide-tags/
 wp-content/plugins/wp-require-login/
 wp-content/plugins/wp-user-avatar/
 wp-content/plugins/wpmudev-updates/
-wp-content/themes/twentyfourteen/
 wp-content/plugins/json-api/
 wp-content/plugins/wp-ajaxify-comments/
 wp-content/plugins/wp-migrate-db-pro/
@@ -159,9 +158,6 @@ wp-content/mysql.sql
 # site environment variants
 .htaccess
 
-# database search-and-replace folder
-/snr
-
 # large/disallowed file types
 # a CDN should be used for these
 *.hqx
@@ -196,3 +192,6 @@ wp-content/mysql.sql
 *.asf
 *.wmv
 *.avi
+
+# database search-and-replace folder
+/snr

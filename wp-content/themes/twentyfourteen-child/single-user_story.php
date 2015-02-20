@@ -69,15 +69,11 @@ get_header(); ?>
 						<quote>
 							Time Entries for This To-Do:
 							<ul>
-							<?php foreach( $doctors as $doctor ): ?>
-								<?php 
-				
-								$photo = get_field('hours_invested', $doctor->ID);
-				
-								?>
+							<?php foreach( $doctors as $doctor ) : ?>
+								<?php $photo = get_field( 'hours_invested', $doctor->ID ); ?>
 								<li>
 									<a href="<?php echo get_permalink( $doctor->ID ); ?>">
-										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours on <?php echo date("F d Y", strtotime($doctor->post_date)); ?>)
+										<?php echo get_the_title( $doctor->ID ); ?> (<?php echo $photo; ?> hours on <?php echo date( "F d Y", strtotime( $doctor->post_date ) ); ?>)
 										<?php $totalHoursWorked += $photo; ?>
 									</a>
 								</li>
@@ -88,9 +84,7 @@ get_header(); ?>
 					<?php 
 					endif; 
 				} ?>
-			
 			</div><!-- .entry-content -->
-
 		</div><!-- #content -->
 	</div><!-- #primary -->
 
