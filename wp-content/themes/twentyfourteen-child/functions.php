@@ -148,6 +148,17 @@ if(function_exists("register_field_group"))
 						'formatting' => 'none',
 						'maxlength' => '',
 					),
+					array (
+						'key' => 'field_53212b4614710',
+						'label' => 'Credit',
+						'name' => 'hours_credit',
+						'type' => 'checkbox',
+						'choices' => array (
+							'Featured?' => '',
+						),
+						'default_value' => 1,
+						'layout' => 'vertical',
+					),
 				),
 				'row_min' => '',
 				'row_limit' => '',
