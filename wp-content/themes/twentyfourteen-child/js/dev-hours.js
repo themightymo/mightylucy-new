@@ -4,6 +4,11 @@
  */
 ( function( $ ) {
 	
+	$('#myTable').dataTable( {
+        "ajax": '../ajax/data/arrays.txt'
+    } );
+	
+	
 	$.fn.dataTable.ext.search.push(
 	    function( settings, data, dataIndex ) {
 		    var from = $('#rangeFrom').val();
