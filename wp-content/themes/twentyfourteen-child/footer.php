@@ -35,8 +35,6 @@
 		
 		})( jQuery );
 	</script>
-	
-	<script type="text/javascript">var $zoho= $zoho || {livedesk:{values:{},ready:function(){}}};var d=document;s=d.createElement("script");s.type="text/javascript";s.defer=true;s.src="https://livedesk.zoho.com/themightymodesignco/float.ls?embedname=themightymodesignco";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
 
 	<?php wp_footer(); ?>
 </body>
