@@ -56,15 +56,20 @@
 	
 		<!--get_status-->
 		<?php
-		//onactive=6 done=4
-		$arr_user_story_done_or_not=get_field('user_story_done_or_not');
-		//fix on the story not saved properly
-		if($arr_user_story_done_or_not[0]==false){ //set to active
-			//update_field('user_story_done_or_not', 'active', get_the_ID());
-			echo 'Please save this ToDo again. This ToDo is not saved properly. Thanks.';
+		//onactive=6 done=4 onhold=9 readyforreview=12
+		$arr_user_story_done_or_not=get_field('user_story_done_or_not',get_the_ID());
+		$doneornot=get_term($arr_user_story_done_or_not,'user_story_done_or_not');
+		if($doneornot->slug=='active'){
+			$active_selected=' selected';
+		}elseif($doneornot->slug=='done'){
+			$done_selected=' selected';
+		}elseif($doneornot->slug=='ready-for-client-review'){
+			$ready_for_client_selected=' selected';
+		}else{
+			$onhold_selected=' selected';
 		}
-		$doneornot=get_term($arr_user_story_done_or_not[0],'user_story_done_or_not');
-		 $options='<tr><td><h5>Status:</h5></td><td><select id="topselect"  status="'.$doneornot->slug.'xxx'.get_the_ID().'"  class="user_story_status"> <option  value="activexxx'.get_the_ID().'"> Active</option><option  value="donexxx'.get_the_ID().'"> Done</option> <option  value="on-holdxxx'.get_the_ID().'"> On Hold</option><option  value="ready-for-client-reviewxxx'.get_the_ID().'" > Ready For Client Review</option></select></td></tr>';
+		
+		 $options='<tr><td><h5>Status:</h5></td><td><select id="topselect"  status="'.$doneornot->slug.'xxx'.get_the_ID().'xxx'.$doneornot->term_id.'"  class="user_story_status"> <option  value="activexxx'.get_the_ID().'xxx6" '.$active_selected.'> Active</option><option  value="donexxx'.get_the_ID().'xxx4" '.$done_selected.'> Done</option> <option  value="on-holdxxx'.get_the_ID().'xxx9" '.$onhold_selected.'> On Hold</option><option  value="ready-for-client-reviewxxx'.get_the_ID().'xxx12" '.$ready_for_client_selected.'> Ready For Client Review</option></select></td></tr>';
 		
 		?>
 		<div id="t_story_status"><table><?php echo $options;?></table><div class="ajax_status"></div></div>
