@@ -31,8 +31,9 @@ get_header(); ?>
 						comments_template();
 					}
 					
-					$arr_user_story_done_or_not=get_field('user_story_done_or_not',get_the_ID());
+					$arr_user_story_done_or_not=get_field('field_5353gb9ed23d1',get_the_ID());
 					$doneornot=get_term($arr_user_story_done_or_not,'user_story_done_or_not');
+	
 					if($doneornot->slug=='active'){
 						$active_selected=' selected';
 					}elseif($doneornot->slug=='done'){
@@ -43,9 +44,10 @@ get_header(); ?>
 						$onhold_selected=' selected';
 					}
 					
-					$options='<tr><td><h5>Status:</h5></td><td><select id="bottomselect"  status="'.$doneornot->slug.'xxx'.get_the_ID().'xxx'.$doneornot->term_id.'"  class="user_story_status"> <option  value="activexxx'.get_the_ID().'xxx6" '.$active_selected.'> Active</option><option  value="donexxx'.get_the_ID().'xxx4" '.$done_selected.'> Done</option> <option  value="on-holdxxx'.get_the_ID().'xxx9" '.$onhold_selected.'> On Hold</option><option  value="ready-for-client-reviewxxx'.get_the_ID().'xxx12" '.$ready_for_client_selected.'> Ready For Client Review</option></select></td></tr>';
+					$options='<tr><td><h5>Status:</h5></td><td><select id="bottomselect"  status="'.$doneornot->slug.'xxx'.get_the_ID().'"  class="user_story_status"> <option  value="activexxx'.get_the_ID().'" '.$active_selected.'> Active</option><option  value="donexxx'.get_the_ID().'" '.$done_selected.'> Done</option> <option  value="on-holdxxx'.get_the_ID().'" '.$onhold_selected.'> On Hold</option><option  value="ready-for-client-reviewxxx'.get_the_ID().'" '.$ready_for_client_selected.'> Ready For Client Review</option></select></td></tr>';
 					
 					?>
+					
 					
 					<div id="b_story_status"><table><?php echo $options;?></table><div class="ajax_status"></div></div>
 				<?php endwhile;
