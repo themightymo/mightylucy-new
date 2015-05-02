@@ -58,7 +58,15 @@
 		<?php
 		//onactive=6 done=4 onhold=9 readyforreview=12
 		$arr_user_story_done_or_not=get_field('field_5353gb9ed23d1',get_the_ID());
-		$doneornot=get_term($arr_user_story_done_or_not,'user_story_done_or_not');
+
+		//some of the existing user status are not using the ACF default fields but custom post type categories
+		if (intval($arr_user_story_done_or_not < 1 )){		    
+			$arr_doneornot=get_the_terms( get_the_ID(), 'user_story_done_or_not');
+			$doneornot=$arr_doneornot[0];
+		}else{
+			$doneornot=get_term($arr_user_story_done_or_not,'user_story_done_or_not');
+		}
+		
 		if($doneornot->slug=='active'){
 			$active_selected=' selected';
 		}elseif($doneornot->slug=='done'){
@@ -68,7 +76,8 @@
 		}else{
 			$onhold_selected=' selected';
 		}
-		$options='<tr><td><h5>Status:</h5></td><td><select id="topselect"  status="'.$doneornot->slug.'xxx'.get_the_ID().'"  class="user_story_status"> <option  value="activexxx'.get_the_ID().'" '.$active_selected.'> Active</option><option  value="donexxx'.get_the_ID().'" '.$done_selected.'> Done</option> <option  value="on-holdxxx'.get_the_ID().'" '.$onhold_selected.'> On Hold</option><option  value="ready-for-client-reviewxxx'.get_the_ID().'" '.$ready_for_client_selected.'> Ready For Client Review</option></select></td></tr>';
+		
+		$options='<tr><td><h5>Status:</h5></td><td><select id="topselect"  status="'.$doneornot->slug.'xxx'.get_the_ID().'"  class="user_story_status '.$arr_user_story_done_or_not.'test"> <option  value="activexxx'.get_the_ID().'" '.$active_selected.'> Active</option><option  value="donexxx'.get_the_ID().'" '.$done_selected.'> Done</option> <option  value="on-holdxxx'.get_the_ID().'" '.$onhold_selected.'> On Hold</option><option  value="ready-for-client-reviewxxx'.get_the_ID().'" '.$ready_for_client_selected.'> Ready For Client Review</option></select></td></tr>';
 		
 		?>
 		<div id="t_story_status"><table><?php echo $options;?></table><div class="ajax_status"></div></div>

@@ -32,7 +32,13 @@ get_header(); ?>
 					}
 					
 					$arr_user_story_done_or_not=get_field('field_5353gb9ed23d1',get_the_ID());
-					$doneornot=get_term($arr_user_story_done_or_not,'user_story_done_or_not');
+					//some of the existing user status are not using the ACF default fields but custom post type categories
+					if (intval($arr_user_story_done_or_not < 1 )){		    
+						$arr_doneornot=get_the_terms( get_the_ID(), 'user_story_done_or_not');
+						$doneornot=$arr_doneornot[0];
+					}else{
+						$doneornot=get_term($arr_user_story_done_or_not,'user_story_done_or_not');
+					}
 	
 					if($doneornot->slug=='active'){
 						$active_selected=' selected';
