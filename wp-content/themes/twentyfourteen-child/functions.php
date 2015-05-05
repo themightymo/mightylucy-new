@@ -580,7 +580,8 @@ add_action('wp_ajax_nopriv_network_sort', 'save_user_story_network_order');
 /**change status**/
 function update_change_status(){
    $data_status = explode('xxx', $_POST['data_status']); 
-   $success=update_field('user_story_done_or_not', $data_status[0], $data_status[1]);
+   $term=get_term_by('slug',$data_status[0],'user_story_done_or_not');
+   $success=update_field('field_5353gb9ed23d1', $term->term_id, $data_status[1]);
    if($success){
       echo 'Successfully updated the status of the story to '.$data_status[0].'.';
 	  exit();
