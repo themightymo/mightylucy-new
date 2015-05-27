@@ -49,7 +49,9 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 									);
 									
 							$blog_list = wp_get_sites($args);
-							
+							?>
+							<table>
+							<?php
 							foreach ($blog_list as $blog) {
 								$blogID = $blog['blog_id'];
 								$site_order=get_user_meta(1,'sites_orderxxx'.$blogID,true);
@@ -82,16 +84,16 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										$arr_prepaid_hours['date_of_purchase'] = $number_of_hours_purchased['date_of_purchase'];
 										$arr_prepaid_hours['blogname'] = get_bloginfo('name');
 										
+										echo '<pre>';
+										print_r($arr_prepaid_hours);
+										echo '</pre>';
 										
-										
-										//echo '<li>Number of hours purchased: ' . $number_of_hours_purchased['number_of_hours_purchased'] . ', Date: ' . $number_of_hours_purchased['date_of_purchase'] . ', Site: ' . get_bloginfo('name') . '</li>';
+										echo '<tr><td>' . $number_of_hours_purchased['number_of_hours_purchased'] . '</td><td>' . $number_of_hours_purchased['date_of_purchase'] . '</td><td>' . get_bloginfo('name') . '</td></tr>';
 									}
 									
-									usort($arr_prepaid_hours, 'date_of_purchase');
+									//usort($arr_prepaid_hours, 'date_of_purchase');
 										
-									echo '<pre>';
-									print_r($arr_prepaid_hours);
-									echo '</pre>';
+									
 									
 									
 									/*if( get_field('prepaid_hours', 'options') ) {
@@ -107,7 +109,9 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 								$arr_sites[]=$arr_site;
 							}
 							
-							
+							?>
+							</table>
+							<?php
 							echo '<ul>';
 							foreach ($arr_sites as $blog) {
 								
