@@ -52,6 +52,9 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							?>
 							<table>
 							<?php
+							
+							$all_prepaid_hours = array();
+							
 							foreach ($blog_list as $blog) {
 								$blogID = $blog['blog_id'];
 								$site_order=get_user_meta(1,'sites_orderxxx'.$blogID,true);
@@ -71,11 +74,14 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 							
 								$arr_prepaid_hours = array();
 								
+								
 								switch_to_blog($blog['blog_id']);
 									
 									/*echo '<pre>';
 									print_r(get_field('prepaid_hours', 'options'));
 									echo '</pre>';*/
+									
+									
 									
 									$prepaid_hours = get_field('prepaid_hours', 'options');
 									foreach ($prepaid_hours as $number_of_hours_purchased) {
@@ -84,40 +90,45 @@ get_currentuserinfo(); // NOTE: I don't know why, but this call to get_currentus
 										$arr_prepaid_hours['date_of_purchase'] = $number_of_hours_purchased['date_of_purchase'];
 										$arr_prepaid_hours['blogname'] = get_bloginfo('name');
 										
-										echo '<pre>';
-										print_r($arr_prepaid_hours);
-										echo '</pre>';
+																				
 										
-										echo '<tr><td>' . $number_of_hours_purchased['number_of_hours_purchased'] . '</td><td>' . $number_of_hours_purchased['date_of_purchase'] . '</td><td>' . get_bloginfo('name') . '</td></tr>';
+										/*echo '<tr><td>' . $number_of_hours_purchased['number_of_hours_purchased'] . '</td><td>' . $number_of_hours_purchased['date_of_purchase'] . '</td><td>' . get_bloginfo('name') . '</td></tr>';*/
+										
 									}
 									
-									//usort($arr_prepaid_hours, 'date_of_purchase');
-										
+									$all_prepaid_hours[] = $arr_prepaid_hours;
+
 									
-									
-									
-									/*if( get_field('prepaid_hours', 'options') ) {
-										while( has_sub_field('number_of_hours_purchased') ) { 
-											$hours_purchased = get_sub_field('number_of_hours_purchased');
-											echo 'Hours Purchased:' . $hours_purchased;
-											// do something with sub field...
-										}
-									}*/
 								
 								restore_current_blog();
+								
+								
 								
 								$arr_sites[]=$arr_site;
 							}
 							
+							
+							function build_sorter($key) {
+							    return function ($a, $b) use ($key) {
+							        return strnatcmp($a[$key], $b[$key]);
+							    };
+							}
+
+							usort($all_prepaid_hours, build_sorter('date_of_purchase'));
+							
+							echo '<pre>';
+							print_r($all_prepaid_hours);
+							echo '</pre>';
+							
 							?>
 							</table>
 							<?php
-							echo '<ul>';
+							/*echo '<ul>';
 							foreach ($arr_sites as $blog) {
 								
 								echo '<li>' . $blog['blogName'] . '</li>';
 							}
-							echo '</ul>';
+							echo '</ul>';*/
 							
 							?>
 														
