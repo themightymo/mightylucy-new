@@ -27,6 +27,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 Copyright 2017 The Mighty Mo! Design Co. LLC
 */
 
+/*
+	TIME ENTRY CONTENT 
+*/
 // If post type is time_entry, then display the date worked	
 add_filter( 'the_content', 'return_acf_time_entry_content' ); 
 function return_acf_time_entry_content ( $content ) { 
@@ -55,6 +58,30 @@ function return_acf_time_entry_content ( $content ) {
     return $content;
 }
 
+
+/*
+	TO-DOS CONTENT
+*/
+// If post type is todo, then display the date worked	
+add_filter( 'the_content', 'return_acf_todo_content' ); 
+function return_acf_todo_content ( $content ) { 
+    
+    $assigned_to = get_field('assigned_to');
+    
+    if ( is_singular('todo') ) {
+	    $todo_content = '<p>This to-do was requested by <span style="font-weight:bold">' . get_the_author() . ' on ' . get_the_date() . '</span> and is assigned to <span style="font-weight:bold">' . $assigned_to['display_name'] . '</span>.</p>';
+	    
+        $content = $todo_content . $content;
+	}
+
+    return $content;
+}
+
+
+
+/*
+	SHORTCODES
+*/
 // Shortcode: To-Dos List
 function todos_shortcode( $atts ) {
 
