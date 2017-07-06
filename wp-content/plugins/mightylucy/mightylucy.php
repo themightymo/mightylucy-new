@@ -69,9 +69,21 @@ function return_acf_todo_content ( $content ) {
     $assigned_to = get_field('assigned_to');
     
     if ( is_singular('todo') ) {
-	    $todo_content = '<p>This to-do was requested by <span style="font-weight:bold">' . get_the_author() . ' on ' . get_the_date() . '</span> and is assigned to <span style="font-weight:bold">' . $assigned_to['display_name'] . '</span>.</p>';
+	    $todo_basics = '<div>This to-do was requested by <span style="font-weight:bold">' . get_the_author() . ' on ' . get_the_date() . '</span> and is assigned to <span style="font-weight:bold">' . $assigned_to['display_name'] . '</span>.</div>';
 	    
-        $content = $todo_content . $content;
+	    if (get_field('hours_estimate')>0) { 
+			$hours_estimate = '<div class="hours-estimate" style="clear:both;">We estimate that this to-do will require <strong>' . get_field('hours_estimate') . ' hours </strong>.</div>';
+			 
+		}
+		
+		if ( get_field('customer') ) { 
+			$term = get_term( get_field('customer'), 'customer' );
+			$customer_name = $term->name;
+			$customer = '<div class="customer" style="clear:both;margin-bottom:1em;">Customer: <a href="' . esc_url( get_term_link( $term ) ) . '">' . $term->name . '</a></div>';
+			 
+		}
+
+        $content = $todo_basics . $hours_estimate . $customer . $content;
 	}
 
     return $content;
@@ -96,6 +108,8 @@ function todos_shortcode( $atts ) {
 	);
 	
 	function query_todos() {
+		
+		
 		// WP_Query arguments
 		$args = array(
 			'post_type' => array( 'todo' ),
@@ -127,3 +141,16 @@ function todos_shortcode( $atts ) {
 
 }
 add_shortcode( 'todos', 'todos_shortcode' );
+
+
+/* 
+	Remove Custom Taxonomy Meta Boxes from the "edit" views of custom post 
+	types for taxonomies that are handled by ACF 
+	via https://codex.wordpress.org/Function_Reference/remove_meta_box
+*/
+
+function remove_custom_taxonomy_meta_boxes() {
+	remove_meta_box( 'customerdiv', 'todo', 'side' );
+	remove_meta_box( 'tagsdiv-to_do_status', 'todo', 'side' );	
+}
+add_action( 'admin_menu', 'remove_custom_taxonomy_meta_boxes' );
