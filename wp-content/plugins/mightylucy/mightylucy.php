@@ -109,7 +109,6 @@ function todos_shortcode( $atts ) {
 	
 	function query_todos() {
 		
-		
 		// WP_Query arguments
 		$args = array(
 			'post_type' => array( 'todo' ),
