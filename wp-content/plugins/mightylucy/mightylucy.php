@@ -202,6 +202,7 @@ add_shortcode( 'todos', 'todos_shortcode' );
 
 function remove_custom_taxonomy_meta_boxes() {
 	remove_meta_box( 'customerdiv', 'todo', 'side' );
+	remove_meta_box( 'customerdiv', 'time_entry', 'side' );
 	remove_meta_box( 'tagsdiv-to_do_status', 'todo', 'side' );	
 }
 add_action( 'admin_menu', 'remove_custom_taxonomy_meta_boxes' );
