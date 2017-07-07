@@ -36,7 +36,7 @@ function return_acf_time_entry_content ( $content ) {
     
     // Get to-do info
     global $post;
-	$todo_post_object = get_field( 'to-do_worked_on' );
+	$todo_post_object = get_field( 'todo_worked_on' );
 	if ( $todo_post_object ):
 		$post = $todo_post_object;
 		
@@ -85,9 +85,61 @@ function return_acf_todo_content ( $content ) {
 
         $content = $todo_basics . $hours_estimate . $customer . $content;
 	}
-
+	
+	
+	
+	/*
+		Display Related Time Entries on Single todo post type
+	*/
+	if ( is_singular('todo') ) {
+		if ( current_user_can('manage_options') ) {
+			/*
+				Get all time entry posts and display the ones that are attached to this to-do
+			*/
+			global $current_page_id;
+			$current_page_id = get_the_ID();
+			
+			$timeEntries = get_posts(array(
+				'post_type' => 'time_entry',
+				'posts_per_page' => -1, 
+				'post_status' => 'publish',
+				'meta_query' => array(
+					array(
+						'key' => 'todo_worked_on', // name of custom field
+						'value' => $current_page_id, // matches exaclty "123", not just 123. This prevents a match for "1234"
+						'compare' => 'LIKE'
+					)
+				)
+			));
+		
+			
+			if( $timeEntries ): ?>
+				<quote>
+					Time Entries for This To-Do:
+					<ul>
+					<?php foreach( $timeEntries as $timeEntry ) : ?>
+						<?php $hours_invested = get_field( 'hours_worked', $timeEntry->ID ); ?>
+						<?php $date_worked = get_field( 'date_worked', $timeEntry->ID ); ?>
+						<li>
+							<a href="<?php echo get_permalink( $timeEntry->ID ); ?>">
+								<?php echo get_the_title( $timeEntry->ID ); ?> (<?php echo $hours_invested; ?> hours on <?php echo date( "F d, Y", strtotime( $date_worked ) ); ?><?php if ( has_term('non-billable','time_entry_categories') ) { echo ', unbilled'; } ?>)
+								<?php $totalHoursWorked += $hours_invested; ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+						<li>Total hours invested on this to-do: <?php echo $totalHoursWorked; ?></li>
+					</ul>
+				</quote>
+			<?php 
+			endif; 
+			
+		}
+	}
+	
     return $content;
 }
+
+
 
 
 
