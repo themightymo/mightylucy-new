@@ -77,13 +77,13 @@ function return_acf_todo_content ( $content ) {
 		}
 		
 		if ( get_field('customer') ) { 
-			$term = get_term( get_field('customer'), 'customer' );
-			$customer_name = $term->name;
-			$customer = '<div class="customer" style="clear:both;margin-bottom:1em;">Customer: <a href="' . esc_url( get_term_link( $term ) ) . '">' . $term->name . '</a></div>';
+			$customer = get_field('customer');
+			var_dump($customer);
+			$customer_output = '<div class="customer" style="clear:both;margin-bottom:1em;">Customer: <a href="' . get_permalink( $customer->ID ) . '">' . $customer->post_title . '</a></div>';
 			 
 		}
 
-        $content = $todo_basics . $hours_estimate . $customer . $content;
+        $content = $todo_basics . $hours_estimate . $customer_output . $content;
 	}
 	
 	
@@ -138,6 +138,13 @@ function return_acf_todo_content ( $content ) {
 	
     return $content;
 }
+
+
+
+
+/*
+	Customer Post Display
+*/
 
 
 
