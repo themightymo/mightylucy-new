@@ -180,7 +180,7 @@ function my_the_content_filter( $content ) {
 		    
 		endif;
 		
-    	$content .= get_field( 'website_url' ) . '<br>' . $name . '<br>' . $email . '<br>'  . $phone . '<br>' . $purchase_date . '<br>' . $hours_purchased . '<br>' . $additional_details . '<br>'; 
+    	$content .= get_field( 'website_url' ) . '<br><h2>Customer Details</h2>Customer Name: ' . $name . '<br>Customer Email: ' . $email . '<br> Customer Phone: '  . $phone . '<br><br><h2>Hours Purchased</h2>Purchase Date: ' . $purchase_date . '<br>Hours Purchased: ' . $hours_purchased . '<br>Additional Details: ' . $additional_details . '<br>'; 
      
     }
     
