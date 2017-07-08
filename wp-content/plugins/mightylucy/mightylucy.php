@@ -78,7 +78,7 @@ function return_acf_todo_content ( $content ) {
 		
 		if ( get_field('customer') ) { 
 			$customer = get_field('customer');
-			var_dump($customer);
+			//var_dump($customer);
 			$customer_output = '<div class="customer" style="clear:both;margin-bottom:1em;">Customer: <a href="' . get_permalink( $customer->ID ) . '">' . $customer->post_title . '</a></div>';
 			 
 		}
@@ -92,48 +92,47 @@ function return_acf_todo_content ( $content ) {
 		Display Related Time Entries on Single todo post type
 	*/
 	if ( is_singular('todo') ) {
-		if ( current_user_can('manage_options') ) {
-			/*
-				Get all time entry posts and display the ones that are attached to this to-do
-			*/
-			global $current_page_id;
-			$current_page_id = get_the_ID();
-			
-			$timeEntries = get_posts(array(
-				'post_type' => 'time_entry',
-				'posts_per_page' => -1, 
-				'post_status' => 'publish',
-				'meta_query' => array(
-					array(
-						'key' => 'todo_worked_on', // name of custom field
-						'value' => $current_page_id, // matches exaclty "123", not just 123. This prevents a match for "1234"
-						'compare' => 'LIKE'
-					)
-				)
-			));
+		/*
+			Get all time entry posts and display the ones that are attached to this to-do
+		*/
+		global $current_page_id;
+		$current_page_id = get_the_ID();
 		
-			
-			if( $timeEntries ): ?>
-				<quote>
-					Time Entries for This To-Do:
-					<ul>
-					<?php foreach( $timeEntries as $timeEntry ) : ?>
-						<?php $hours_invested = get_field( 'hours_worked', $timeEntry->ID ); ?>
-						<?php $date_worked = get_field( 'date_worked', $timeEntry->ID ); ?>
-						<li>
-							<a href="<?php echo get_permalink( $timeEntry->ID ); ?>">
-								<?php echo get_the_title( $timeEntry->ID ); ?> (<?php echo $hours_invested; ?> hours on <?php echo date( "F d, Y", strtotime( $date_worked ) ); ?><?php if ( has_term('non-billable','time_entry_categories') ) { echo ', unbilled'; } ?>)
-								<?php $totalHoursWorked += $hours_invested; ?>
-							</a>
-						</li>
-					<?php endforeach; ?>
-						<li>Total hours invested on this to-do: <?php echo $totalHoursWorked; ?></li>
-					</ul>
-				</quote>
-			<?php 
-			endif; 
-			
-		}
+		$timeEntries = get_posts(array(
+			'post_type' => 'time_entry',
+			'posts_per_page' => -1, 
+			'post_status' => 'publish',
+			'meta_query' => array(
+				array(
+					'key' => 'todo_worked_on', // name of custom field
+					'value' => $current_page_id, // matches exaclty "123", not just 123. This prevents a match for "1234"
+					'compare' => 'LIKE'
+				)
+			)
+		));
+	
+		
+		if( $timeEntries ): ?>
+			<quote>
+				Time Entries for This To-Do:
+				<ul>
+				<?php foreach( $timeEntries as $timeEntry ) : ?>
+					<?php $hours_invested = get_field( 'hours_worked', $timeEntry->ID ); ?>
+					<?php $date_worked = get_field( 'date_worked', $timeEntry->ID ); ?>
+					<li>
+						<a href="<?php echo get_permalink( $timeEntry->ID ); ?>">
+							<?php echo get_the_title( $timeEntry->ID ); ?> (<?php echo $hours_invested; ?> hours on <?php echo date( "F d, Y", strtotime( $date_worked ) ); ?><?php if ( has_term('non-billable','time_entry_categories') ) { echo ', unbilled'; } ?>)
+							<?php $totalHoursWorked += $hours_invested; ?>
+						</a>
+					</li>
+				<?php endforeach; ?>
+					<li>Total hours invested on this to-do: <?php echo $totalHoursWorked; ?></li>
+				</ul>
+			</quote>
+		<?php 
+		endif; 
+		
+	
 	}
 	
     return $content;
@@ -143,11 +142,50 @@ function return_acf_todo_content ( $content ) {
 
 
 /*
-	Customer Post Display
+	Single Customer View
 */
+// If post type is customer, then display the date worked	
+add_filter( 'the_content', 'my_the_content_filter', 20 );
+/**
+ * Add a icon to the beginning of every post page.
+ *
+ * @uses is_single()
+ */
 
 
 
+function my_the_content_filter( $content ) {
+
+    if ( is_singular ('customer') ) {
+	    
+		if ( have_rows('contact_information') ): 
+			while( have_rows('contact_information') ): the_row(); 
+			
+				$name = get_sub_field('name'); 
+				$email = get_sub_field('email');
+			    $phone = get_sub_field('phone'); 
+		    
+		    endwhile; 
+		    
+		endif;
+        
+        if ( have_rows('purchases') ): 
+			while( have_rows('purchases') ): the_row(); 
+			
+				$purchase_date = get_sub_field('purchase_date'); 
+				$hours_purchased = get_sub_field('hours_purchased');
+			    $additional_details = get_sub_field('additional_details'); 
+		    
+		    endwhile; 
+		    
+		endif;
+		
+    	$content .= get_field( 'website_url' ) . '<br>' . $name . '<br>' . $email . '<br>'  . $phone . '<br>' . $purchase_date . '<br>' . $hours_purchased . '<br>' . $additional_details . '<br>'; 
+     
+    }
+    
+    return $content;
+}
 
 
 /*
