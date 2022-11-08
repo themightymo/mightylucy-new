@@ -35,42 +35,42 @@ function cptui_register_my_cpts() {
 	 */
 
 	$labels = [
-		"name" => esc_html__( "To-Dos", "twentytwentythree" ),
-		"singular_name" => esc_html__( "To-Do", "twentytwentythree" ),
-		"menu_name" => esc_html__( "My To-Dos", "twentytwentythree" ),
-		"all_items" => esc_html__( "All To-Dos", "twentytwentythree" ),
-		"add_new" => esc_html__( "Add new", "twentytwentythree" ),
-		"add_new_item" => esc_html__( "Add new To-Do", "twentytwentythree" ),
-		"edit_item" => esc_html__( "Edit To-Do", "twentytwentythree" ),
-		"new_item" => esc_html__( "New To-Do", "twentytwentythree" ),
-		"view_item" => esc_html__( "View To-Do", "twentytwentythree" ),
-		"view_items" => esc_html__( "View To-Dos", "twentytwentythree" ),
-		"search_items" => esc_html__( "Search To-Dos", "twentytwentythree" ),
-		"not_found" => esc_html__( "No To-Dos found", "twentytwentythree" ),
-		"not_found_in_trash" => esc_html__( "No To-Dos found in trash", "twentytwentythree" ),
-		"parent" => esc_html__( "Parent To-Do:", "twentytwentythree" ),
-		"featured_image" => esc_html__( "Featured image for this To-Do", "twentytwentythree" ),
-		"set_featured_image" => esc_html__( "Set featured image for this To-Do", "twentytwentythree" ),
-		"remove_featured_image" => esc_html__( "Remove featured image for this To-Do", "twentytwentythree" ),
-		"use_featured_image" => esc_html__( "Use as featured image for this To-Do", "twentytwentythree" ),
-		"archives" => esc_html__( "To-Do archives", "twentytwentythree" ),
-		"insert_into_item" => esc_html__( "Insert into To-Do", "twentytwentythree" ),
-		"uploaded_to_this_item" => esc_html__( "Upload to this To-Do", "twentytwentythree" ),
-		"filter_items_list" => esc_html__( "Filter To-Dos list", "twentytwentythree" ),
-		"items_list_navigation" => esc_html__( "To-Dos list navigation", "twentytwentythree" ),
-		"items_list" => esc_html__( "To-Dos list", "twentytwentythree" ),
-		"attributes" => esc_html__( "To-Dos attributes", "twentytwentythree" ),
-		"name_admin_bar" => esc_html__( "To-Do", "twentytwentythree" ),
-		"item_published" => esc_html__( "To-Do published", "twentytwentythree" ),
-		"item_published_privately" => esc_html__( "To-Do published privately.", "twentytwentythree" ),
-		"item_reverted_to_draft" => esc_html__( "To-Do reverted to draft.", "twentytwentythree" ),
-		"item_scheduled" => esc_html__( "To-Do scheduled", "twentytwentythree" ),
-		"item_updated" => esc_html__( "To-Do updated.", "twentytwentythree" ),
-		"parent_item_colon" => esc_html__( "Parent To-Do:", "twentytwentythree" ),
+		"name" => esc_html__( "To-Dos", "mightylucy" ),
+		"singular_name" => esc_html__( "To-Do", "mightylucy" ),
+		"menu_name" => esc_html__( "My To-Dos", "mightylucy" ),
+		"all_items" => esc_html__( "All To-Dos", "mightylucy" ),
+		"add_new" => esc_html__( "Add new", "mightylucy" ),
+		"add_new_item" => esc_html__( "Add new To-Do", "mightylucy" ),
+		"edit_item" => esc_html__( "Edit To-Do", "mightylucy" ),
+		"new_item" => esc_html__( "New To-Do", "mightylucy" ),
+		"view_item" => esc_html__( "View To-Do", "mightylucy" ),
+		"view_items" => esc_html__( "View To-Dos", "mightylucy" ),
+		"search_items" => esc_html__( "Search To-Dos", "mightylucy" ),
+		"not_found" => esc_html__( "No To-Dos found", "mightylucy" ),
+		"not_found_in_trash" => esc_html__( "No To-Dos found in trash", "mightylucy" ),
+		"parent" => esc_html__( "Parent To-Do:", "mightylucy" ),
+		"featured_image" => esc_html__( "Featured image for this To-Do", "mightylucy" ),
+		"set_featured_image" => esc_html__( "Set featured image for this To-Do", "mightylucy" ),
+		"remove_featured_image" => esc_html__( "Remove featured image for this To-Do", "mightylucy" ),
+		"use_featured_image" => esc_html__( "Use as featured image for this To-Do", "mightylucy" ),
+		"archives" => esc_html__( "To-Do archives", "mightylucy" ),
+		"insert_into_item" => esc_html__( "Insert into To-Do", "mightylucy" ),
+		"uploaded_to_this_item" => esc_html__( "Upload to this To-Do", "mightylucy" ),
+		"filter_items_list" => esc_html__( "Filter To-Dos list", "mightylucy" ),
+		"items_list_navigation" => esc_html__( "To-Dos list navigation", "mightylucy" ),
+		"items_list" => esc_html__( "To-Dos list", "mightylucy" ),
+		"attributes" => esc_html__( "To-Dos attributes", "mightylucy" ),
+		"name_admin_bar" => esc_html__( "To-Do", "mightylucy" ),
+		"item_published" => esc_html__( "To-Do published", "mightylucy" ),
+		"item_published_privately" => esc_html__( "To-Do published privately.", "mightylucy" ),
+		"item_reverted_to_draft" => esc_html__( "To-Do reverted to draft.", "mightylucy" ),
+		"item_scheduled" => esc_html__( "To-Do scheduled", "mightylucy" ),
+		"item_updated" => esc_html__( "To-Do updated.", "mightylucy" ),
+		"parent_item_colon" => esc_html__( "Parent To-Do:", "mightylucy" ),
 	];
 
 	$args = [
-		"label" => esc_html__( "To-Dos", "twentytwentythree" ),
+		"label" => esc_html__( "To-Dos", "mightylucy" ),
 		"labels" => $labels,
 		"description" => "A conversation-starter, a to-do, a task, etc.",
 		"public" => true,
@@ -109,13 +109,13 @@ function cptui_register_my_taxes() {
 	 */
 
 	$labels = [
-		"name" => esc_html__( "To-Do Categories", "twentytwentythree" ),
-		"singular_name" => esc_html__( "To-Do Category", "twentytwentythree" ),
+		"name" => esc_html__( "To-Do Categories", "mightylucy" ),
+		"singular_name" => esc_html__( "To-Do Category", "mightylucy" ),
 	];
 
 	
 	$args = [
-		"label" => esc_html__( "To-Do Categories", "twentytwentythree" ),
+		"label" => esc_html__( "To-Do Categories", "mightylucy" ),
 		"labels" => $labels,
 		"public" => true,
 		"publicly_queryable" => true,
@@ -142,13 +142,13 @@ function cptui_register_my_taxes() {
 	 */
 
 	$labels = [
-		"name" => esc_html__( "To-Do Tags", "twentytwentythree" ),
-		"singular_name" => esc_html__( "To-Do Tag", "twentytwentythree" ),
+		"name" => esc_html__( "To-Do Tags", "mightylucy" ),
+		"singular_name" => esc_html__( "To-Do Tag", "mightylucy" ),
 	];
 
 	
 	$args = [
-		"label" => esc_html__( "To-Do Tags", "twentytwentythree" ),
+		"label" => esc_html__( "To-Do Tags", "mightylucy" ),
 		"labels" => $labels,
 		"public" => true,
 		"publicly_queryable" => true,
