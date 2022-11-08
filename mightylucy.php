@@ -24,8 +24,154 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-Copyright 2017 The Mighty Mo! Design Co. LLC
+Copyright 2014 The Mighty Mo! Design Co. LLC
 */
+
+//Create "to-do" post type
+function cptui_register_my_cpts() {
+
+	/**
+	 * Post Type: To-Dos.
+	 */
+
+	$labels = [
+		"name" => esc_html__( "To-Dos", "twentytwentythree" ),
+		"singular_name" => esc_html__( "To-Do", "twentytwentythree" ),
+		"menu_name" => esc_html__( "My To-Dos", "twentytwentythree" ),
+		"all_items" => esc_html__( "All To-Dos", "twentytwentythree" ),
+		"add_new" => esc_html__( "Add new", "twentytwentythree" ),
+		"add_new_item" => esc_html__( "Add new To-Do", "twentytwentythree" ),
+		"edit_item" => esc_html__( "Edit To-Do", "twentytwentythree" ),
+		"new_item" => esc_html__( "New To-Do", "twentytwentythree" ),
+		"view_item" => esc_html__( "View To-Do", "twentytwentythree" ),
+		"view_items" => esc_html__( "View To-Dos", "twentytwentythree" ),
+		"search_items" => esc_html__( "Search To-Dos", "twentytwentythree" ),
+		"not_found" => esc_html__( "No To-Dos found", "twentytwentythree" ),
+		"not_found_in_trash" => esc_html__( "No To-Dos found in trash", "twentytwentythree" ),
+		"parent" => esc_html__( "Parent To-Do:", "twentytwentythree" ),
+		"featured_image" => esc_html__( "Featured image for this To-Do", "twentytwentythree" ),
+		"set_featured_image" => esc_html__( "Set featured image for this To-Do", "twentytwentythree" ),
+		"remove_featured_image" => esc_html__( "Remove featured image for this To-Do", "twentytwentythree" ),
+		"use_featured_image" => esc_html__( "Use as featured image for this To-Do", "twentytwentythree" ),
+		"archives" => esc_html__( "To-Do archives", "twentytwentythree" ),
+		"insert_into_item" => esc_html__( "Insert into To-Do", "twentytwentythree" ),
+		"uploaded_to_this_item" => esc_html__( "Upload to this To-Do", "twentytwentythree" ),
+		"filter_items_list" => esc_html__( "Filter To-Dos list", "twentytwentythree" ),
+		"items_list_navigation" => esc_html__( "To-Dos list navigation", "twentytwentythree" ),
+		"items_list" => esc_html__( "To-Dos list", "twentytwentythree" ),
+		"attributes" => esc_html__( "To-Dos attributes", "twentytwentythree" ),
+		"name_admin_bar" => esc_html__( "To-Do", "twentytwentythree" ),
+		"item_published" => esc_html__( "To-Do published", "twentytwentythree" ),
+		"item_published_privately" => esc_html__( "To-Do published privately.", "twentytwentythree" ),
+		"item_reverted_to_draft" => esc_html__( "To-Do reverted to draft.", "twentytwentythree" ),
+		"item_scheduled" => esc_html__( "To-Do scheduled", "twentytwentythree" ),
+		"item_updated" => esc_html__( "To-Do updated.", "twentytwentythree" ),
+		"parent_item_colon" => esc_html__( "Parent To-Do:", "twentytwentythree" ),
+	];
+
+	$args = [
+		"label" => esc_html__( "To-Dos", "twentytwentythree" ),
+		"labels" => $labels,
+		"description" => "A conversation-starter, a to-do, a task, etc.",
+		"public" => true,
+		"publicly_queryable" => true,
+		"show_ui" => true,
+		"show_in_rest" => true,
+		"rest_base" => "",
+		"rest_controller_class" => "WP_REST_Posts_Controller",
+		"rest_namespace" => "wp/v2",
+		"has_archive" => false,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"delete_with_user" => false,
+		"exclude_from_search" => false,
+		"capability_type" => "post",
+		"map_meta_cap" => true,
+		"hierarchical" => true,
+		"can_export" => true,
+		"rewrite" => [ "slug" => "todo", "with_front" => true ],
+		"query_var" => true,
+		"menu_icon" => "dashicons-format-chat",
+		"supports" => [ "title", "editor", "thumbnail", "excerpt", "trackbacks", "custom-fields", "comments", "revisions", "author", "page-attributes", "post-formats" ],
+		"show_in_graphql" => false,
+	];
+
+	register_post_type( "to_do", $args );
+}
+
+add_action( 'init', 'cptui_register_my_cpts' );
+
+//Register To-Do Categories & Tags
+function cptui_register_my_taxes() {
+
+	/**
+	 * Taxonomy: To-Do Categories.
+	 */
+
+	$labels = [
+		"name" => esc_html__( "To-Do Categories", "twentytwentythree" ),
+		"singular_name" => esc_html__( "To-Do Category", "twentytwentythree" ),
+	];
+
+	
+	$args = [
+		"label" => esc_html__( "To-Do Categories", "twentytwentythree" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => false,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'to_do_category', 'with_front' => true, ],
+		"show_admin_column" => false,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "to_do_category",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"rest_namespace" => "wp/v2",
+		"show_in_quick_edit" => false,
+		"sort" => false,
+		"show_in_graphql" => false,
+	];
+	register_taxonomy( "to_do_category", [ "to-do" ], $args );
+
+	/**
+	 * Taxonomy: To-Do Tags.
+	 */
+
+	$labels = [
+		"name" => esc_html__( "To-Do Tags", "twentytwentythree" ),
+		"singular_name" => esc_html__( "To-Do Tag", "twentytwentythree" ),
+	];
+
+	
+	$args = [
+		"label" => esc_html__( "To-Do Tags", "twentytwentythree" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => false,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'to_do_tags', 'with_front' => true, ],
+		"show_admin_column" => false,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "to_do_tags",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"rest_namespace" => "wp/v2",
+		"show_in_quick_edit" => false,
+		"sort" => false,
+		"show_in_graphql" => false,
+	];
+	register_taxonomy( "to_do_tags", [ "to-do" ], $args );
+}
+add_action( 'init', 'cptui_register_my_taxes' );
+
 
 /*
 	TIME ENTRY CONTENT 
@@ -33,6 +179,13 @@ Copyright 2017 The Mighty Mo! Design Co. LLC
 // If post type is time_entry, then display the date worked	
 add_filter( 'the_content', 'return_acf_time_entry_content' ); 
 function return_acf_time_entry_content ( $content ) { 
+    // if it's not a todo, then return the normal content.
+    if ( is_singular( 'to_do' ) ) {
+	    
+	    
+    } else {
+	
+    }
     
     // Get to-do info
     global $post;
