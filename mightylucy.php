@@ -173,42 +173,50 @@ function cptui_register_my_taxes() {
 add_action( 'init', 'cptui_register_my_taxes' );
 
 
+
+
+
+
+
+
+//BEGIN VINTAGE CODE THAT NEEDS TO BE REWRITTEN FOR THE TO-DO POST TYPE
+
 /*
 	TIME ENTRY CONTENT 
 */
+
 // If post type is time_entry, then display the date worked	
 add_filter( 'the_content', 'return_acf_time_entry_content' ); 
 function return_acf_time_entry_content ( $content ) { 
     // if it's not a todo, then return the normal content.
-    if ( is_singular( 'to_do' ) ) {
-	    
+    if ( !is_singular( 'time_entry' ) ) {
+	    return $content;
 	    
     } else {
-	
-    }
     
-    // Get to-do info
-    global $post;
-	$todo_post_object = get_field( 'todo_worked_on' );
-	if ( $todo_post_object ):
-		$post = $todo_post_object;
-		
-		setup_postdata( $post );
-			$todo_permalink = get_permalink( get_the_ID() );
-			$todo_title = get_the_title( get_the_ID() );
-		wp_reset_postdata();
-	endif; 
-
-    if ( is_singular('time_entry') ) {
-	    //var_dump($todo_post_object);
-        $acf_echo = 'Date Worked: ' . get_field( 'date_worked' ) . '<br>';
-        $acf_echo .= 'Hours Worked: ' . get_field( 'hours_worked' ) . '<br>';
-        $acf_echo .= 'Related To-Do: <a href="' . $todo_permalink . '">' . $todo_title . '</a>';
-        //$acf_echo .= var_dump( get_term ( '', get_field( 'customer' ) ) );
-        $content = $acf_echo . $content;
-	}
-
-    return $content;
+	    // Get to-do info
+	    global $post;
+		$todo_post_object = get_field( 'todo_worked_on' );
+		if ( $todo_post_object ):
+			$post = $todo_post_object;
+			
+			setup_postdata( $post );
+				$todo_permalink = get_permalink( get_the_ID() );
+				$todo_title = get_the_title( get_the_ID() );
+			wp_reset_postdata();
+		endif; 
+	
+	    if ( is_singular('time_entry') ) {
+		    //var_dump($todo_post_object);
+	        $acf_echo = 'Date Worked: ' . get_field( 'date_worked' ) . '<br>';
+	        $acf_echo .= 'Hours Worked: ' . get_field( 'hours_worked' ) . '<br>';
+	        $acf_echo .= 'Related To-Do: <a href="' . $todo_permalink . '">' . $todo_title . '</a>';
+	        //$acf_echo .= var_dump( get_term ( '', get_field( 'customer' ) ) );
+	        $content = $acf_echo . $content;
+		}
+	
+	    return $content;
+    }
 }
 
 
