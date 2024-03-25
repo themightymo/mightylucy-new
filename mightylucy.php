@@ -7,6 +7,7 @@ Author: themightymo, Toby Cryns
 Author URI: https://www.themightymo.com
 License: GPLv2 or later
 Text Domain: themightymo
+Version: 0.1
 */
 
 /*
@@ -42,3 +43,12 @@ function bb_do_single_post_top_section() {
 				edit_post_link( _x( 'Edit', 'Edit post link text.', 'fl-automator' ) );
 	}
 }
+
+/* 
+	Hide the Posts menu in wp-admin
+	via https://wordpress.stackexchange.com/questions/36123/how-to-disable-posts-and-use-pages-only
+*/
+function remove_posts_menu() {
+    remove_menu_page('edit.php');
+}
+add_action('admin_menu', 'remove_posts_menu');
