@@ -90,6 +90,54 @@ add_shortcode('display_assigned_to_user_link', 'display_assigned_to_user_link');
 
 
 
+/*
+	[display_tagged_users_links]
+	In this function:
+
+	We retrieve the "tagged_users" field, which should return an array of user objects.
+	We check if any users are tagged; if not, a message is shown.
+	If there are tagged users, we loop through each user, creating a list item with a link to their profile page (or any other page you'd prefer).
+	We use get_author_posts_url to get the URL to the user's author page. If you have a custom profile page, you may need to adjust this URL.
+	Now, by using the shortcode [display_tagged_users_links] in your posts, you can display a list of tagged users with links to their profiles or author pages. Make sure the tagged_users field is configured correctly in ACF to return user objects, and adjust the user link generation as needed for your site's requirements.
+*/
+function display_tagged_users_links($atts) {
+    global $post;
+
+    // Ensure we are on a 'todo' post type
+    if ($post->post_type !== 'todo') {
+        return '';
+    }
+
+    // Get the 'tagged_users' field which returns an array of user objects
+    $tagged_users = get_field('tagged_users', $post->ID);
+
+    // Check if there are tagged users
+    if (empty($tagged_users)) {
+        return 'No users tagged.';
+    }
+
+    // Start building the output
+    $output = '<span class="tagged-users">';
+
+    // Loop through the users and create a link for each
+    foreach ($tagged_users as $user) {
+        // Assume you want to link to the user's author page or a custom profile page
+        $user_link = get_author_posts_url($user['ID']);
+
+        // Append each user's link to the output
+        $output .= '<a href="' . esc_url($user_link) . '">' . esc_html($user['display_name']) . '</a> ';
+    }
+
+    $output .= '</span>';
+
+    return $output;
+}
+
+// Register the shortcode with WordPress
+add_shortcode('display_tagged_users_links', 'display_tagged_users_links');
+
+
+
 
 
 
@@ -234,5 +282,3 @@ function toby_list_terms_custom_taxonomy( $atts ) {
     return '<ul class="toby-terms">' . $output . '</ul>';
 }
 add_shortcode( 'toby_terms', 'toby_list_terms_custom_taxonomy' );
-
-
