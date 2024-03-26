@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: MightyLucy
+Plugin Name: MightyLucy by Toby Cryns
 Plugin URI: https://www.themightymo.com/
 Description: A conversation-oriented project management solution using WordPress.  Inspired by Basecamp.  
 Author: themightymo, Toby Cryns
