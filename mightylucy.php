@@ -7,7 +7,7 @@ Author: themightymo, Toby Cryns
 Author URI: https://www.themightymo.com
 License: GPLv2 or later
 Text Domain: themightymo
-Version: 0.1
+Version: 0.2
 */
 
 /*
