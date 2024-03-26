@@ -148,35 +148,54 @@ add_shortcode('display_assigned_to_user_content', 'display_assigned_to_user_cont
 
 
 
-// Shortcode to display the currently logged in user's to-dos
+/*
+	[list_my_todos]
+	Shortcode to display the currently logged in user's to-dos
+*/
 function list_my_todos($atts) {
     // Get the current user
     $current_user = wp_get_current_user();
     if (!$current_user->exists()) {
         return 'You must be logged in to see your tasks.';
     }
-    
+
     // Arguments for the WP_Query
     $args = array(
         'post_type' => 'todo',
         'posts_per_page' => -1,  // Retrieve all posts
-        'meta_key' => 'assigned_to',  // Adjust if your ACF field name is different
-        'meta_value' =>  $current_user->ID,
-        'compare' => '='
+        'author' => $current_user->ID,
     );
-  
 
     $query = new WP_Query($args);
+
     if (!$query->have_posts()) {
-        return 'No tasks found assigned to you.';
+        return "No tasks found assigned to you.";
     }
 
-
     // Start building the output
-    $output = '<ul>';
+    $output = '<ul class="list-my-todos">';
     while ($query->have_posts()) {
         $query->the_post();
-        $output .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+
+        // Assuming each "todo" post is associated with one "customer" term
+        $customers = wp_get_post_terms(get_the_ID(), 'customer');
+        $logo_html = '';
+
+        if (!empty($customers)) {
+            // Fetch the first term
+            $customer = $customers[0];
+
+            // Get the 'logo' field (ID) for the term
+            $logo_id = get_field('logo', 'customer_' . $customer->term_id);
+            if ($logo_id) {
+                // Get the image URL from the attachment ID
+                $logo_url = wp_get_attachment_image_url($logo_id, 'thumbnail'); // You can change 'thumbnail' to any other image size
+                // Construct image tag
+                $logo_html = '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($customer->name) . '" style="width:50px;height:auto;"> ';
+            }
+        }
+
+        $output .= '<li>' . $logo_html . '<a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
     }
     wp_reset_postdata();  // Reset the global post object
     $output .= '</ul>';
