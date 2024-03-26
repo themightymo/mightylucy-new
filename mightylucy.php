@@ -59,42 +59,83 @@ add_action('admin_menu', 'remove_posts_menu');
 
 
 // Create shortcode to display the ACF User relational field on "todo" post types.
-function display_assigned_to_user($atts) {
+function display_assigned_to_user_link($atts) {
     // Get the global post object
     global $post;
 
-    // Ensure we are on a 'todo' post type
-    if ($post->post_type !== 'todo') {
-        return '';
-    }
-
     // Get the 'assigned_to' field value
-    $assigned_users = get_field('assigned_to', $post->ID);
-	
-			
-	$userID = $assigned_users['ID'];   // grabs the user ID			
-	
-	// grabs corresponding social info from user account
-	$userEmail = get_the_author_meta('user_email', $userID); 
-	$userName = get_the_author_meta('display_name', $userID); 
+    $assigned_users = get_field('assigned_to', $post->ID);		
+	$userID = get_field('assigned_to', $post->ID);   // grabs the user ID
+	$userName = get_the_author_meta('display_name', $userID);
+	//$userSlug = get_the_author_meta ('user_login' , $userID);
 	
     // Check if there are assigned users
     if (empty($assigned_users)) {
         return 'No users assigned.' . $assigned_users . $post->ID . 'Rat farts!';
     }
-    //var_dump($post);
 
     // Start building the output
-    $output = 'Assigned to: ' . '<a href="' . esc_url( get_author_posts_url( $userID ) ) . '?post_type=todo" title="' . esc_attr( get_the_author() ) . '">' . $userName . '</a>';
-
-    
+    $output = 'Assigned to: ' . '<a href="/assigned-to/?assigned_to=' . $userID . '" title="' . $userName . '">' . $userName . '</a>';
 
     return $output;
 }
 
 // Register the shortcode with WordPress
-// DOESN'T WORK CORRECTLY YET
-add_shortcode('display_assigned_to', 'display_assigned_to_user');
+add_shortcode('display_assigned_to_user_link', 'display_assigned_to_user_link');
+
+
+
+/* 
+	Add the ability to use the "assigned_to" url parameter
+	via https://stackoverflow.com/questions/13652605/extracting-a-parameter-from-a-url-in-wordpress
+*/
+add_action('init','add_get_val');
+function add_get_val() { 
+    global $wp; 
+    $wp->add_query_var('assigned_to'); 
+}
+
+// Create shortcode to display the ACF User relational field on "todo" post types.
+function display_assigned_to_user_content ($atts) {
+	
+	// via https://stackoverflow.com/questions/13652605/extracting-a-parameter-from-a-url-in-wordpress
+
+	// Arguments for the WP_Query
+    $args = array(
+        'post_type' => 'todo',
+        'posts_per_page' => -1,  // Retrieve all posts
+        'meta_key' => 'assigned_to',  // Adjust if your ACF field name is different
+        'meta_value' =>  get_query_var('assigned_to'),
+        'compare' => '='
+    );
+  
+
+    $query = new WP_Query($args);
+    if (!$query->have_posts()) {
+        return 'Rat farts!!!';
+    }
+
+
+    // Start building the output
+    $output = '<ul>';
+    while ($query->have_posts()) {
+        $query->the_post();
+        $output .= '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+    }
+    wp_reset_postdata();  // Reset the global post object
+    $output .= '</ul>';
+
+    return '<h1>To-dos assigned to ' . get_the_author_meta('display_name', get_query_var('assigned_to')) . '</h1>' . $output;
+}
+
+// Register the shortcode with WordPress
+add_shortcode('display_assigned_to_user_content', 'display_assigned_to_user_content');
+
+
+
+
+
+
 
 
 // Shortcode to display teh currently logged in user's to-dos
