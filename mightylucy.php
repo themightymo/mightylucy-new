@@ -10,6 +10,10 @@ Text Domain: themightymo
 Version: 0.2
 */
 
+if (!defined('ABSPATH')) {
+    exit; // Exit if accessed directly
+}
+
 /*
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -30,7 +34,7 @@ Copyright 2014 The Mighty Mo! Design Co. LLC
 
 //include( plugin_dir_path( __FILE__ ) . 'register_post_types.php');
 //include( plugin_dir_path( __FILE__ ) . 'register_taxonomies.php');
-include( plugin_dir_path( __FILE__ ) . 'shortcodes.php');
+//include( plugin_dir_path( __FILE__ ) . 'shortcodes.php');
 
 
 
