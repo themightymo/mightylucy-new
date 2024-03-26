@@ -187,3 +187,33 @@ function list_my_todos($atts) {
 // Register the shortcode with WordPress [list_my_todos]
 add_shortcode('list_my_todos', 'list_my_todos');
 
+
+
+function toby_list_terms_custom_taxonomy( $atts ) {
+    // Inside the function, we extract the custom taxonomy parameter of our shortcode
+    extract( shortcode_atts( array(
+        'custom_taxonomy' => '',
+    ), $atts ) );
+
+    $terms = get_terms([
+        'taxonomy' => $custom_taxonomy,
+        'hide_empty' => false,
+    ]);
+
+    $output = '';
+    foreach ($terms as $term) {
+        // Get the 'logo' field for the term
+        $logo_id = get_field('logo', $term);
+        $logo_url = wp_get_attachment_image_url($logo_id, 'full'); // Adjust image size as needed
+
+        // Check if there's a logo to display
+        $logo_img = $logo_url ? '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($term->name) . ' Logo" class="customer_logo" style="max-width:50px;">' : '';
+
+        $output .= '<li>' . $logo_img . '<a href="' . get_term_link($term) . '">' . $term->name . '</a></li>';
+    }
+
+    return '<ul>' . $output . '</ul>';
+}
+add_shortcode( 'toby_terms', 'toby_list_terms_custom_taxonomy' );
+
+
