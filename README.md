@@ -1,10 +1,10 @@
-mightylucy
+mightylucy NEW
 ==========
 
-The tool we use at The Mighty Mo! to keep track of hours purchased and work completed against those hours.  Basically, the perfect tool for small businesses and freelancers who bill hourly.
+A conversation-oriented project management solution using WordPress.  Inspired by Basecamp.
 
-
-A WordPress project management plugin: think Basecamp + Pivotal Tracker + Harvest + etc.
 
 
 Roadmap: https://docs.google.com/document/d/1iKQXeoR9cZPPpkXD5F_74lFoSFYvbqOq09jZfnj8mok/edit?usp=sharing
+
+See the old MightyLucy, which is built on Multi-site and uses the Twenty-Fourteen theme: https://github.com/themightymo/mightylucy
