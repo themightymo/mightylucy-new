@@ -75,13 +75,19 @@ function display_assigned_to_user_link($atts) {
     }
 
     // Start building the output
-    $output = 'Assigned to: ' . '<a href="/assigned-to/?assigned_to=' . $userID . '" title="' . $userName . '">' . $userName . '</a>';
+    $output = '<a href="/assigned-to/?assigned_to=' . $userID . '" title="' . $userName . '">' . $userName . '</a>';
 
     return $output;
 }
 
 // Register the shortcode with WordPress
 add_shortcode('display_assigned_to_user_link', 'display_assigned_to_user_link');
+
+
+
+
+
+
 
 
 
@@ -138,7 +144,7 @@ add_shortcode('display_assigned_to_user_content', 'display_assigned_to_user_cont
 
 
 
-// Shortcode to display teh currently logged in user's to-dos
+// Shortcode to display the currently logged in user's to-dos
 function list_my_todos($atts) {
     // Get the current user
     $current_user = wp_get_current_user();
