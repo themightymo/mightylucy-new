@@ -212,7 +212,7 @@ function toby_list_terms_custom_taxonomy( $atts ) {
         $output .= '<li>' . $logo_img . '<a href="' . get_term_link($term) . '">' . $term->name . '</a></li>';
     }
 
-    return '<ul>' . $output . '</ul>';
+    return '<ul class="toby-terms">' . $output . '</ul>';
 }
 add_shortcode( 'toby_terms', 'toby_list_terms_custom_taxonomy' );
 
